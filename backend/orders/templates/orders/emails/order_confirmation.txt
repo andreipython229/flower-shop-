@@ -1,0 +1,22 @@
+Здравствуйте, {{ order.name }}!
+
+Ваш заказ №{{ order.id }} успешно принят и находится в обработке.
+
+Дата заказа: {{ order.created_at|date:"d.m.Y H:i" }}
+Статус: {{ order.get_status_display }}
+Адрес доставки: {{ order.address }}
+{% if order.comment %}
+Комментарий: {{ order.comment }}
+{% endif %}
+
+Состав заказа:
+{% for item in items %}
+- {{ item.name }} - {{ item.quantity }} шт. × {{ item.price }} ₽ = {{ item.total }} ₽
+{% endfor %}
+
+Итого: {{ order.total }} ₽
+
+Спасибо за ваш заказ! Мы свяжемся с вами в ближайшее время.
+
+С уважением, команда Flower Shop
+

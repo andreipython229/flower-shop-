@@ -1,4 +1,6 @@
-"""Исправление изображения 'Белые пионы (9 шт)' - ТОЛЬКО белые пионы, без других цветов"""
+"""Исправление изображения 'Белые пионы (9 шт)' - ТОЛЬКО белые пионы,
+
+без других цветов"""
 
 import logging
 import os
@@ -126,7 +128,8 @@ if __name__ == "__main__":
                             "regular"
                         ) or best_photo.get("urls", {}).get("small")
                         logger.info(
-                            f"✓ Найдено изображение (score: {best_score}): {image_url[:80]}..."
+                            f"✓ Найдено изображение (score: {best_score}): "
+                            f"{image_url[:80]}..."
                         )
                         break
         except Exception as e:

@@ -51,8 +51,10 @@ def get_unsplash_image(search_query):
             )
             return None
         else:
+            status_code = response.status_code
+            response_text = response.text[:200]
             logger.warning(
-                f"⚠ Unsplash API вернул статус {response.status_code}: {response.text[:200]}"
+                f"⚠ Unsplash API вернул статус {status_code}: {response_text}"
             )
             return None
 
@@ -132,7 +134,8 @@ def load_images():
         logger.error("")
         logger.error("АЛЬТЕРНАТИВА: Используйте скрипт load_images_smart.py")
         logger.error(
-            "Он автоматически переключится на локальные изображения, если ключ не работает."
+            "Он автоматически переключится на локальные изображения, "
+            "если ключ не работает."
         )
         return
     else:
@@ -149,8 +152,8 @@ def load_images():
 
             if not image_url:
                 logger.warning(
-                    f"⚠ Не найдено изображение для '{
-        flower.name}' (запрос: '{search_query}')"
+                    f"⚠ Не найдено изображение для '{flower.name}' "
+                    f"(запрос: '{search_query}')"
                 )
                 skipped += 1
                 continue

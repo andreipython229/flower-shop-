@@ -38,3 +38,30 @@ class Flower(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Favorite(models.Model):
+    """Избранные цветы пользователя"""
+
+    user = models.ForeignKey(
+        "auth.User",
+        on_delete=models.CASCADE,
+        related_name="favorites",
+        verbose_name="Пользователь",
+    )
+    flower = models.ForeignKey(
+        Flower,
+        on_delete=models.CASCADE,
+        related_name="favorited_by",
+        verbose_name="Цветок",
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата добавления")
+
+    class Meta:
+        verbose_name = "Избранное"
+        verbose_name_plural = "Избранное"
+        unique_together = [["user", "flower"]]
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.user.username} - {self.flower.name}"

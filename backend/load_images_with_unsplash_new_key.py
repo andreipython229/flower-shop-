@@ -195,13 +195,9 @@ def get_unsplash_image(search_query, api_key):
                 image_url = photo.get("urls", {}).get("regular") or photo.get(
                     "urls", {}
                 ).get("small")
+                user_name = photo.get("user", {}).get("name", "Unknown")
                 logger.info(
-                    f"  ✓ Найдено изображение от {
-        photo.get(
-            'user',
-            {}).get(
-                'name',
-                 'Unknown')} (score: {best_score})"
+                    f"  ✓ Найдено изображение от {user_name} " f"(score: {best_score})"
                 )
                 return image_url
             else:
@@ -286,7 +282,10 @@ def load_images():
                     stream=True,
                     timeout=20,
                     headers={
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                        "User-Agent": (
+                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                            "AppleWebKit/537.36"
+                        )
                     },
                 )
                 response.raise_for_status()

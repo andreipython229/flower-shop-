@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import JSONField
 
@@ -10,6 +11,14 @@ class Order(models.Model):
         ("cancelled", "Отменен"),
     ]
 
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="orders",
+        null=True,
+        blank=True,
+        verbose_name="Пользователь",
+    )
     name = models.CharField(max_length=200, verbose_name="Имя")
     phone = models.CharField(max_length=20, verbose_name="Телефон")
     email = models.EmailField(verbose_name="Email")
@@ -19,6 +28,9 @@ class Order(models.Model):
     total = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Итого")
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default="pending", verbose_name="Статус"
+    )
+    payment_intent_id = models.CharField(
+        max_length=255, blank=True, null=True, verbose_name="ID платежа Stripe"
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 

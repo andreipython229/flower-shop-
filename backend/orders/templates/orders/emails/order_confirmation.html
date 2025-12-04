@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        .order-info {
+            background-color: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 4px solid #4caf50;
+        }
+        .order-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4caf50;
+            margin: 10px 0;
+        }
+        .items-list {
+            list-style: none;
+            padding: 0;
+        }
+        .items-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4caf50;
+            margin-top: 15px;
+            text-align: right;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌸 Flower Shop</h1>
+    </div>
+    <div class="content">
+        <h2>Здравствуйте, {{ order.name }}!</h2>
+        <p>Ваш заказ успешно принят и находится в обработке.</p>
+        
+        <div class="order-info">
+            <div class="order-number">Заказ №{{ order.id }}</div>
+            <p><strong>Дата:</strong> {{ order.created_at|date:"d.m.Y H:i" }}</p>
+            <p><strong>Статус:</strong> {{ order.get_status_display }}</p>
+            <p><strong>Адрес доставки:</strong> {{ order.address }}</p>
+            {% if order.comment %}
+            <p><strong>Комментарий:</strong> {{ order.comment }}</p>
+            {% endif %}
+        </div>
+
+        <h3>Состав заказа:</h3>
+        <ul class="items-list">
+            {% for item in items %}
+            <li>
+                <strong>{{ item.name }}</strong> - 
+                {{ item.quantity }} шт. × {{ item.price }} ₽ = 
+                <strong>{{ item.total }} ₽</strong>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div class="total">
+            Итого: {{ order.total }} ₽
+        </div>
+
+        <p>Спасибо за ваш заказ! Мы свяжемся с вами в ближайшее время.</p>
+    </div>
+    <div class="footer">
+        <p>С уважением, команда Flower Shop</p>
+        <p>Если у вас есть вопросы, свяжитесь с нами по телефону или email.</p>
+    </div>
+</body>
+</html>
+

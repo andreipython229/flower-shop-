@@ -87,10 +87,18 @@ def check_actual_images():
 
     # Проверяем несколько URL напрямую
     test_urls = {
-        "Красные розы": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg",
-        "Белые розы": "https://images.pexels.com/photos/736230/pexels-photo-736230.jpeg",
-        "Розовые розы": "https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg",
-        "Желтые розы": "https://images.pexels.com/photos/1070535/pexels-photo-1070535.jpeg",
+        "Красные розы": (
+            "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg"
+        ),
+        "Белые розы": (
+            "https://images.pexels.com/photos/736230/pexels-photo-736230.jpeg"
+        ),
+        "Розовые розы": (
+            "https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg"
+        ),
+        "Желтые розы": (
+            "https://images.pexels.com/photos/1070535/pexels-photo-1070535.jpeg"
+        ),
     }
 
     for name, url in test_urls.items():

@@ -24,6 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("flowers.urls")),
     path("api/", include("orders.urls")),
+    path("api/auth/", include("accounts.urls")),
 ]
 
 # Раздача медиа-файлов в режиме разработки

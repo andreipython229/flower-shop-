@@ -1,4 +1,5 @@
-"""Простое исправление 'Розовые гвоздики (30 шт)' - берем первое изображение из Unsplash"""
+"""Простое исправление 'Розовые гвоздики (30 шт)' -
+берем первое изображение из Unsplash"""
 
 import logging
 import os
@@ -121,7 +122,8 @@ if __name__ == "__main__":
                             "regular"
                         ) or best_photo.get("urls", {}).get("small")
                         logger.info(
-                            f"✓ Найдено изображение (score: {best_score}): {image_url[:80]}..."
+                            f"✓ Найдено изображение (score: {best_score}): "
+                            f"{image_url[:80]}..."
                         )
                         break  # Нашли подходящее, выходим из цикла
         except Exception as e:

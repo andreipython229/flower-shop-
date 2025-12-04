@@ -34,9 +34,8 @@ def test_unsplash_key(api_key):
             if data.get("results") and len(data["results"]) > 0:
                 photo = data["results"][0]
                 print("✅ КЛЮЧ ВАЛИДЕН!")
-                print(
-                    f"   Найдено изображение: {photo.get('urls', {}).get('small', 'N/A')[:60]}..."
-                )
+                image_url = photo.get("urls", {}).get("small", "N/A")[:60]
+                print(f"   Найдено изображение: {image_url}...")
                 return True
             else:
                 print("⚠ Ключ работает, но нет результатов")

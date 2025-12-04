@@ -66,8 +66,8 @@ def verify_images():
 
         status = "✓" if with_img == total_type else "⚠"
         print(
-            f"{status} {
-        flower_type.capitalize()}: {with_img}/{total_type} с изображениями"
+            f"{status} {flower_type.capitalize()}: "
+            f"{with_img}/{total_type} с изображениями"
         )
 
         # Показываем примеры для каждого типа

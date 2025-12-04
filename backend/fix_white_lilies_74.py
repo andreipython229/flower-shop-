@@ -136,11 +136,13 @@ if __name__ == "__main__":
                         "regular"
                     ) or best_photo.get("urls", {}).get("small")
                     logger.info(
-                        f"✓ Найдено изображение (score: {best_score}): {image_url[:80]}..."
+                        f"✓ Найдено изображение (score: {best_score}): "
+                        f"{image_url[:80]}..."
                     )
                 else:
                     logger.error(
-                        f"✗ Не найдено подходящего изображения (лучший score: {best_score})"
+                        f"✗ Не найдено подходящего изображения "
+                        f"(лучший score: {best_score})"
                     )
                     sys.exit(1)
             else:

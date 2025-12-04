@@ -25,7 +25,8 @@ UNSPLASH_API_URL = "https://api.unsplash.com/search/photos"
 
 
 def get_unsplash_image(search_query, api_key):
-    """Получает изображение из Unsplash API с ОЧЕНЬ строгим фильтром - ТОЛЬКО белые розы"""
+    """Получает изображение из Unsplash API с ОЧЕНЬ строгим фильтром -
+    ТОЛЬКО белые розы"""
     if not api_key:
         logger.warning("⚠ Unsplash API ключ не установлен!")
         return None
@@ -109,7 +110,8 @@ def get_unsplash_image(search_query, api_key):
                     return image_url
                 else:
                     logger.warning(
-                        f"  ⚠ Не найдено подходящего изображения (лучший score: {best_score})"
+                        f"  ⚠ Не найдено подходящего изображения "
+                        f"(лучший score: {best_score})"
                     )
                     return None
             else:
@@ -200,7 +202,8 @@ if __name__ == "__main__":
                 time.sleep(2)
             else:
                 logger.error(
-                    f"✗ Ошибка при загрузке изображения после {max_retries} попыток: {e}"
+                    f"✗ Ошибка при загрузке изображения после "
+                    f"{max_retries} попыток: {e}"
                 )
                 sys.exit(1)
         except Exception as e:

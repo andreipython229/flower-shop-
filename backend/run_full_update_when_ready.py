@@ -58,9 +58,10 @@ def check_limit():
 
                     if wait_time.total_seconds() > 0:
                         minutes = int(wait_time.total_seconds() / 60)
+                        reset_time_str = reset_datetime.strftime("%H:%M:%S")
                         logger.info(
-                            f"⏰ Лимит сбросится через: {minutes} минут (в {
-        reset_datetime.strftime('%H:%M:%S')})"
+                            f"⏰ Лимит сбросится через: {minutes} минут "
+                            f"(в {reset_time_str})"
                         )
                 return False
         else:
@@ -89,5 +90,6 @@ if __name__ == "__main__":
     logger.info("")
     logger.info("Команда для запуска:")
     logger.info(
-        "$env:UNSPLASH_ACCESS_KEY='твой_ключ'; python load_images_with_unsplash_new_key.py"
+        "$env:UNSPLASH_ACCESS_KEY='твой_ключ'; "
+        "python load_images_with_unsplash_new_key.py"
     )

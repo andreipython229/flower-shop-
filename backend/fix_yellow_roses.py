@@ -186,7 +186,8 @@ if __name__ == "__main__":
                 time.sleep(2)
             else:
                 logger.error(
-                    f"✗ Ошибка при загрузке изображения после {max_retries} попыток: {e}"
+                    f"✗ Ошибка при загрузке изображения после "
+                    f"{max_retries} попыток: {e}"
                 )
                 sys.exit(1)
         except Exception as e:

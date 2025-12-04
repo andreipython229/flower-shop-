@@ -25,7 +25,8 @@ UNSPLASH_API_URL = "https://api.unsplash.com/search/photos"
 
 
 def get_unsplash_image(search_query, api_key):
-    """Получает изображение из Unsplash API с очень строгим фильтром для красных гвоздик"""
+    """Получает изображение из Unsplash API с очень строгим фильтром
+    для красных гвоздик"""
     if not api_key:
         logger.warning("⚠ Unsplash API ключ не установлен!")
         return None
@@ -187,7 +188,8 @@ if __name__ == "__main__":
                 time.sleep(2)
             else:
                 logger.error(
-                    f"✗ Ошибка при загрузке изображения после {max_retries} попыток: {e}"
+                    f"✗ Ошибка при загрузке изображения после "
+                    f"{max_retries} попыток: {e}"
                 )
                 sys.exit(1)
         except Exception as e:

@@ -1,4 +1,5 @@
-"""Скрипт для исправления изображений 'Розовые гвоздики (25 шт)' и 'Розовые гвоздики (15 шт)' через Unsplash API"""
+"""Скрипт для исправления изображений 'Розовые гвоздики (25 шт)' и
+'Розовые гвоздики (15 шт)' через Unsplash API"""
 
 import logging
 import os
@@ -25,7 +26,8 @@ UNSPLASH_API_URL = "https://api.unsplash.com/search/photos"
 
 
 def get_unsplash_image(search_query, api_key, skip_index=0):
-    """Получает изображение из Unsplash API с очень строгим фильтром для розовых гвоздик"""
+    """Получает изображение из Unsplash API с очень строгим фильтром
+    для розовых гвоздик"""
     if not api_key:
         logger.warning("⚠ Unsplash API ключ не установлен!")
         return None

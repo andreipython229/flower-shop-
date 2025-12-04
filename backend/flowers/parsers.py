@@ -1907,11 +1907,9 @@ class FlowerParser:
                         if file_extension not in ["jpg", "jpeg", "png", "webp"]:
                             file_extension = "jpg"
                         md5_hash = hashlib.md5(
-                            flower_data['name'].encode()
+                            flower_data["name"].encode()
                         ).hexdigest()[:8]
-                        file_name = (
-                            f"{safe_name}_{md5_hash}.{file_extension}"
-                        )
+                        file_name = f"{safe_name}_{md5_hash}.{file_extension}"
 
                         image_content = ContentFile(response.content)
                         # Сохраняем файл в media/flowers/ (КАК С СОБАЧКАМИ)
@@ -1949,11 +1947,9 @@ class FlowerParser:
                             safe_name = re.sub(r"[-\s]+", "_", safe_name)
                             file_extension = "jpg"
                             md5_hash = hashlib.md5(
-                                flower_data['name'].encode()
+                                flower_data["name"].encode()
                             ).hexdigest()[:8]
-                            file_name = (
-                                f"{safe_name}_{md5_hash}.{file_extension}"
-                            )
+                            file_name = f"{safe_name}_{md5_hash}.{file_extension}"
                             image_content = ContentFile(response.content)
                             image_path = default_storage.save(
                                 f"flowers/{file_name}", image_content

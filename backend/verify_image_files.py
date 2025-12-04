@@ -41,13 +41,15 @@ for flower_name in test_flowers:
             same_file_count = Flower.objects.filter(image=flower.image).count()
             if same_file_count > 1:
                 print(
-                    f"  ⚠ ВНИМАНИЕ: Этот файл используется для {same_file_count} цветов!"
+                    f"  ⚠ ВНИМАНИЕ: Этот файл используется "
+                    f"для {same_file_count} цветов!"
                 )
                 same_flowers = Flower.objects.filter(image=flower.image).exclude(
                     id=flower.id
                 )
                 print(
-                    f"     Также используется для: {', '.join([f.name for f in same_flowers[:3]])}"
+                    f"     Также используется для: "
+                    f"{', '.join([f.name for f in same_flowers[:3]])}"
                 )
         else:
             print("  ✗ Нет изображения")
@@ -74,8 +76,8 @@ duplicates = (
 
 if duplicates:
     print(
-        f"\nНайдено {
-        len(duplicates)} файлов, которые используются для нескольких цветов:\n"
+        f"\nНайдено {len(duplicates)} файлов, "
+        f"которые используются для нескольких цветов:\n"
     )
     for dup in duplicates[:10]:
         flowers_with_same = Flower.objects.filter(image=dup["image"])

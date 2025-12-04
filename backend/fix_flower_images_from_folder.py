@@ -187,7 +187,8 @@ def fix_flower_images():
                     flower.save()
 
                     logger.info(
-                        f"✓ Обновлено изображение для '{flower.name}' -> {matching_image.name}"
+                        f"✓ Обновлено изображение для '{flower.name}' -> "
+                        f"{matching_image.name}"
                     )
                     updated += 1
 

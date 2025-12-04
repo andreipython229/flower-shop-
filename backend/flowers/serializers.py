@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Category, Flower
+from .models import Category, Favorite, Flower
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -67,3 +67,18 @@ class FlowerSerializer(serializers.ModelSerializer):
 
             return base_url
         return None
+
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    flower = FlowerSerializer(read_only=True)
+    flower_id = serializers.PrimaryKeyRelatedField(
+        queryset=Flower.objects.all(),
+        source="flower",
+        write_only=True,
+        required=False,
+    )
+
+    class Meta:
+        model = Favorite
+        fields = ["id", "flower", "flower_id", "created_at"]
+        read_only_fields = ["id", "created_at"]

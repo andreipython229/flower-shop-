@@ -280,8 +280,8 @@ def load_images():
                 image_url = get_unsplash_image(unsplash_key, search_query)
                 if not image_url:
                     logger.warning(
-                        f"⚠ Не найдено изображение для '{
-        flower.name}' (запрос: '{search_query}')"
+                        f"⚠ Не найдено изображение для '{flower.name}' "
+                        f"(запрос: '{search_query}')"
                     )
                     skipped += 1
                     continue

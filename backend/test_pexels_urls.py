@@ -8,10 +8,16 @@ import requests
 
 # Тестируем URL для проблемных цветов
 test_urls = {
-    "белые розы": "https://images.pexels.com/photos/736230/pexels-photo-736230.jpeg",
-    "красные розы": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg",
-    "белые фрезии": "https://images.pexels.com/photos/2300718/pexels-photo-2300718.jpeg",
-    "желтые альстромерии": "https://images.pexels.com/photos/1070535/pexels-photo-1070535.jpeg",
+    "белые розы": ("https://images.pexels.com/photos/736230/pexels-photo-736230.jpeg"),
+    "красные розы": (
+        "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg"
+    ),
+    "белые фрезии": (
+        "https://images.pexels.com/photos/2300718/pexels-photo-2300718.jpeg"
+    ),
+    "желтые альстромерии": (
+        "https://images.pexels.com/photos/1070535/pexels-photo-1070535.jpeg"
+    ),
 }
 
 print("=" * 80)

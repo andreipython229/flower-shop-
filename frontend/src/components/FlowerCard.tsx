@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../store/slices/cartSlice';
 import styled from 'styled-components';
 import { Flower } from '../types';
+import { favoritesAPI } from '../services/api';
 
 interface FlowerCardProps {
   flower: Flower;
@@ -59,6 +60,28 @@ const Button = styled.button`
   }
 `;
 
+const FavoriteButton = styled.button<{ $isFavorite: boolean }>`
+  background-color: ${(props) => (props.$isFavorite ? '#f44336' : '#ff9800')};
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  &:hover {
+    background-color: ${(props) => (props.$isFavorite ? '#d32f2f' : '#f57c00')};
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+`;
+
 interface PlaceholderStyle {
   bg: string;
   circle: string;
@@ -67,9 +90,50 @@ interface PlaceholderStyle {
 
 const FlowerCard: React.FC<FlowerCardProps> = ({ flower }) => {
   const dispatch = useDispatch();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const token = localStorage.getItem('accessToken');
+
+  useEffect(() => {
+    // Проверяем, есть ли цветок в избранном (если пользователь авторизован)
+    if (token) {
+      favoritesAPI
+        .getAll()
+        .then((response) => {
+          const favoriteIds = response.data.map((f) => f.flower.id);
+          setIsFavorite(favoriteIds.includes(flower.id));
+        })
+        .catch(() => {
+          // Игнорируем ошибку, если пользователь не авторизован
+        });
+    }
+  }, [token, flower.id]);
 
   const handleAddToCart = () => {
     dispatch(addItem(flower));
+  };
+
+  const handleToggleFavorite = async () => {
+    if (!token) {
+      alert('Войдите в систему, чтобы добавлять товары в избранное');
+      return;
+    }
+
+    try {
+      if (isFavorite) {
+        // Находим ID избранного и удаляем
+        const favorites = await favoritesAPI.getAll();
+        const favorite = favorites.data.find((f) => f.flower.id === flower.id);
+        if (favorite) {
+          await favoritesAPI.remove(favorite.id);
+          setIsFavorite(false);
+        }
+      } else {
+        await favoritesAPI.add(flower.id);
+        setIsFavorite(true);
+      }
+    } catch (error) {
+      console.error('Error toggling favorite:', error);
+    }
   };
 
   // КАК С СОБАЧКАМИ: Используем image_url или image, с fallback на placeholder
@@ -174,7 +238,12 @@ const FlowerCard: React.FC<FlowerCardProps> = ({ flower }) => {
       <Title>{flower.name}</Title>
       <p>{flower.description}</p>
       <Price>{flower.price} ₽</Price>
-      <Button onClick={handleAddToCart}>В корзину</Button>
+      <ButtonGroup>
+        <Button onClick={handleAddToCart}>В корзину</Button>
+        <FavoriteButton $isFavorite={isFavorite} onClick={handleToggleFavorite}>
+          {isFavorite ? '❤️ В избранном' : '🤍 В избранное'}
+        </FavoriteButton>
+      </ButtonGroup>
     </Card>
   );
 };

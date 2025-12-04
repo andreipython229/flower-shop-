@@ -24,12 +24,8 @@ def check_flower_images():
         print(f"\n{flower.name}:")
         if flower.image:
             print(f"  ✓ Есть локальный файл: {flower.image.name}")
-            print(
-                f"  Путь: {
-        flower.image.path if hasattr(
-            flower.image,
-             'path') else 'N/A'}"
-            )
+            path = flower.image.path if hasattr(flower.image, "path") else "N/A"
+            print(f"  Путь: {path}")
         else:
             print("  ✗ Нет локального файла")
 

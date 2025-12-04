@@ -25,7 +25,8 @@ UNSPLASH_API_URL = "https://api.unsplash.com/search/photos"
 
 
 def get_unsplash_image(search_query, api_key):
-    """Получает изображение из Unsplash API с приоритетом на яркие и четкие изображения"""
+    """Получает изображение из Unsplash API с приоритетом
+    на яркие и четкие изображения"""
     if not api_key:
         logger.warning("⚠ Unsplash API ключ не установлен!")
         return None
@@ -119,7 +120,8 @@ def get_unsplash_image(search_query, api_key):
                         "full"
                     ) or best_photo.get("urls", {}).get("regular")
                     logger.info(
-                        f"  ✓ Найдено яркое изображение белых гербер (score: {best_score})"
+                        f"  ✓ Найдено яркое изображение белых гербер "
+                        f"(score: {best_score})"
                     )
                     return image_url
                 else:

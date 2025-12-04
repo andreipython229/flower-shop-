@@ -1,10 +1,12 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { ordersAPI } from '../services/api';
 import { clearCart } from '../store/slices/cartSlice';
 import styled from 'styled-components';
 import { RootState } from '../store/store';
+import Toast from '../components/Toast';
 
 const Container = styled.div`
   max-width: 600px;
@@ -42,6 +44,29 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 1.25rem;
   margin-top: 1rem;
+  &:hover {
+    background-color: #229954;
+  }
+`;
+
+const PayButton = styled.button`
+  background-color: #635bff;
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+  &:hover {
+    background-color: #5851ea;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `;
 
 interface OrderFormData {
@@ -69,26 +94,93 @@ const OrderPage: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [toast, setToast] = useState<{ show: boolean; message: string; type: 'success' | 'error' | 'info' }>({
+    show: false,
+    message: '',
+    type: 'success',
+  });
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info' = 'success') => {
+    setToast({ show: true, message, type });
+  };
+
+  const hideToast = () => {
+    setToast({ ...toast, show: false });
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Проверяем, что корзина не пуста
+    if (cart.items.length === 0) {
+      alert('Корзина пуста. Добавьте товары в корзину перед оформлением заказа.');
+      navigate('/');
+      return;
+    }
+
     try {
-      await ordersAPI.create({
+      const response = await ordersAPI.create({
         ...formData,
         items: cart.items,
         total: cart.total,
       });
+      
+      // Очищаем корзину только после успешного создания заказа
       dispatch(clearCart());
-      alert('Заказ успешно оформлен!');
-      navigate('/');
-    } catch (error) {
+      showToast(`Заказ №${response.data.id} успешно оформлен! Спасибо за покупку!`, 'success');
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+    } catch (err) {
+      const error = err as AxiosError<{ detail?: string; message?: string }>;
       console.error('Error creating order:', error);
-      alert('Ошибка при оформлении заказа');
+      const errorMessage = error.response?.data?.detail || error.response?.data?.message || 'Ошибка при оформлении заказа';
+      showToast(`Ошибка: ${errorMessage}`, 'error');
+    }
+  };
+
+  const handlePayWithStripe = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    
+    // Проверяем, что корзина не пуста
+    if (cart.items.length === 0) {
+      alert('Корзина пуста. Добавьте товары в корзину перед оформлением заказа.');
+      navigate('/');
+      return;
+    }
+
+    setIsProcessing(true);
+
+    try {
+      const response = await ordersAPI.createCheckout({
+        ...formData,
+        items: cart.items,
+        total: cart.total,
+      });
+      
+      // Редирект на страницу оплаты Stripe
+      window.location.href = response.data.checkout_url;
+    } catch (err) {
+      const error = err as AxiosError<{ error?: string; message?: string }>;
+      console.error('Error creating checkout:', error);
+      const errorMessage = error.response?.data?.error || error.response?.data?.message || 'Ошибка при создании платежа';
+      alert(`Ошибка: ${errorMessage}`);
+      setIsProcessing(false);
     }
   };
 
   return (
-    <Container>
-      <h1>Оформление заказа</h1>
+    <>
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        show={toast.show}
+        onClose={hideToast}
+        duration={3000}
+      />
+      <Container>
+        <h1>Оформление заказа</h1>
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
@@ -131,9 +223,19 @@ const OrderPage: React.FC = () => {
         <div>
           <strong>Итого: {cart.total} ₽</strong>
         </div>
-        <Button type="submit">Подтвердить заказ</Button>
+        <ButtonGroup>
+          <PayButton 
+            type="button" 
+            onClick={handlePayWithStripe}
+            disabled={isProcessing}
+          >
+            {isProcessing ? 'Обработка...' : '💳 Оплатить онлайн'}
+          </PayButton>
+          <Button type="submit">Подтвердить заказ (без оплаты)</Button>
+        </ButtonGroup>
       </Form>
     </Container>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 """
-Скрипт для загрузки изображений через Pexels API (бесплатный, не требует ключа для базового использования)
+Скрипт для загрузки изображений через Pexels API
+(бесплатный, не требует ключа для базового использования)
 """
 
 import os
@@ -134,8 +135,8 @@ def load_images():
 
             if not image_url:
                 logger.warning(
-                    f"⚠ Не найдено изображение для '{
-        flower.name}' (запрос: '{search_query}')"
+                    f"⚠ Не найдено изображение для '{flower.name}' "
+                    f"(запрос: '{search_query}')"
                 )
                 skipped += 1
                 continue
@@ -184,7 +185,8 @@ def load_images():
 
     logger.info("\n" + "=" * 60)
     logger.info(
-        f"Загрузка завершена! Обновлено: {updated}, Пропущено: {skipped}, Ошибок: {failed}"
+        f"Загрузка завершена! Обновлено: {updated}, "
+        f"Пропущено: {skipped}, Ошибок: {failed}"
     )
 
 

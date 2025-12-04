@@ -8,13 +8,19 @@ max-line-length = 88
 # W503 - перенос строки перед оператором (black использует W503 стиль)
 # E402 - импорты не в начале файла (нормально для Django скриптов с django.setup())
 # E226 - пробелы вокруг операторов (black форматирует автоматически)
-ignore = E203, E266, W503, E402, E226
-# Исключаем директории
+# W391 - пустая строка в конце файла (не критично, можно игнорировать)
+# E122 - неправильный отступ в продолжении строки (black форматирует автоматически)
+ignore = E203, E266, W503, E402, E226, W391, E122
+# Исключаем директории и файлы с base64 данными
 exclude =
     .git,
     __pycache__,
     .venv,
     venv,
     migrations,
-    settings.py
-
+    settings.py,
+    update_base64_25.py,
+    update_pink_carnations_25.py,
+    upload_carnations_manual.py,
+    replace_pink_25.py,
+    replace_pink_25_simple.py

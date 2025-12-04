@@ -28,9 +28,10 @@ for flower in Flower.objects.all():
 duplicates = {f: names for f, names in file_to_flowers.items() if len(names) > 1}
 
 if duplicates:
+    duplicates_count = len(duplicates)
     print(
-        f"\n⚠ НАЙДЕНО {
-        len(duplicates)} ФАЙЛОВ, КОТОРЫЕ ИСПОЛЬЗУЮТСЯ ДЛЯ НЕСКОЛЬКИХ ЦВЕТОВ:\n"
+        f"\n⚠ НАЙДЕНО {duplicates_count} ФАЙЛОВ, "
+        f"КОТОРЫЕ ИСПОЛЬЗУЮТСЯ ДЛЯ НЕСКОЛЬКИХ ЦВЕТОВ:\n"
     )
 
     for file_name, flower_names in list(duplicates.items())[:10]:
@@ -70,9 +71,8 @@ for flower_name in problem_flowers:
             print(f"\n{flower_name}:")
             print(f"  Файл: {file_name}")
             if same_file_flowers:
-                print(
-                    f"  ⚠ Этот файл также используется для: {', '.join(same_file_flowers[:3])}"
-                )
+                flowers_list = ", ".join(same_file_flowers[:3])
+                print(f"  ⚠ Этот файл также используется для: {flowers_list}")
             else:
                 print("  ✓ Уникальный файл")
 

@@ -157,8 +157,10 @@ def find_best_local_image(flower_name, image_files):
     # Возвращаем лучшее совпадение
     best_file, best_score, matched = best_matches[0]
 
+    matched_str = ", ".join(matched[:3])
     logger.info(
-        f"  Найдено: {best_file.name} (score: {best_score}, совпадения: {', '.join(matched[:3])})"
+        f"  Найдено: {best_file.name} (score: {best_score}, "
+        f"совпадения: {matched_str})"
     )
 
     return best_file

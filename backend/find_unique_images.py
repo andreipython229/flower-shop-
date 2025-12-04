@@ -246,8 +246,10 @@ def assign_unique_images():
                     flower.image_url = None
                     flower.save()
 
+                    hash_short = file_hash[:8]
                     logger.info(
-                        f"✓ '{flower.name}' -> {matching_image.name} (hash: {file_hash[:8]})"
+                        f"✓ '{flower.name}' -> {matching_image.name} "
+                        f"(hash: {hash_short})"
                     )
                     updated += 1
 

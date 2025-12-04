@@ -106,8 +106,8 @@ def load_flower_images():
 
             if not image_url:
                 logger.warning(
-                    f"⚠ Не найдено изображение для '{
-        flower.name}' (запрос: '{search_query}')"
+                    f"⚠ Не найдено изображение для '{flower.name}' "
+                    f"(запрос: '{search_query}')"
                 )
                 skipped += 1
                 continue
@@ -125,7 +125,10 @@ def load_flower_images():
                     stream=True,
                     timeout=15,
                     headers={
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                        "User-Agent": (
+                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                            "AppleWebKit/537.36"
+                        )
                     },
                 )
                 response.raise_for_status()

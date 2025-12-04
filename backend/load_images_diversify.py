@@ -97,7 +97,10 @@ def get_diverse_search_query(flower_name, index=0):
 
 
 def get_unsplash_image(search_query, api_key, skip_first=0):
-    """Получает изображение из Unsplash API, пропуская первые N результатов для разнообразия"""
+    """
+    Получает изображение из Unsplash API,
+    пропуская первые N результатов для разнообразия
+    """
     if not api_key:
         logger.warning("⚠ Unsplash API ключ не установлен!")
         return None
@@ -126,8 +129,8 @@ def get_unsplash_image(search_query, api_key, skip_first=0):
             ):
                 if attempt < max_retries - 1:
                     logger.warning(
-                        f"  ⚠ Таймаут (попытка {
-        attempt + 1}/{max_retries}), повторяю через 2 секунды..."
+                        f"  ⚠ Таймаут (попытка {attempt + 1}/{max_retries}), "
+                        f"повторяю через 2 секунды..."
                     )
                     time.sleep(2)
                 else:
@@ -230,8 +233,8 @@ def load_diverse_images():
                         time.sleep(0.5)
                     else:
                         logger.warning(
-                            f"  ⚠ Не удалось скачать изображение: {
-        img_response.status_code}"
+                            f"  ⚠ Не удалось скачать изображение: "
+                            f"{img_response.status_code}"
                         )
                         skipped += 1
                 except Exception as e:

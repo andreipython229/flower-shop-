@@ -1,4 +1,5 @@
-"""Исправление изображения 'Белые розы (25 шт)' через Unsplash API с очень строгим фильтром"""
+"""Исправление изображения 'Белые розы (25 шт)' через Unsplash API
+с очень строгим фильтром"""
 
 import logging
 import os
@@ -109,7 +110,8 @@ def get_unsplash_image(search_query, api_key):
                     return image_url
                 else:
                     logger.warning(
-                        f"  ⚠ Не найдено подходящего изображения (лучший score: {best_score})"
+                        f"  ⚠ Не найдено подходящего изображения "
+                        f"(лучший score: {best_score})"
                     )
                     return None
             else:
@@ -200,7 +202,8 @@ if __name__ == "__main__":
                 time.sleep(2)
             else:
                 logger.error(
-                    f"✗ Ошибка при загрузке изображения после {max_retries} попыток: {e}"
+                    f"✗ Ошибка при загрузке изображения после "
+                    f"{max_retries} попыток: {e}"
                 )
                 sys.exit(1)
         except Exception as e:

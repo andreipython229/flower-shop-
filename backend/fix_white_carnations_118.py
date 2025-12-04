@@ -117,7 +117,8 @@ def get_unsplash_image(search_query, api_key):
                     return image_url
                 else:
                     logger.warning(
-                        f"  ⚠ Не найдено подходящего изображения (лучший score: {best_score} < 20)"
+                        f"  ⚠ Не найдено подходящего изображения "
+                        f"(лучший score: {best_score} < 20)"
                     )
                     return None
             else:

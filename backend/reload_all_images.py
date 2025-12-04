@@ -80,10 +80,8 @@ def reload_all_images():
                 file_extension = image_url.split(".")[-1].split("?")[0]
                 if file_extension not in ["jpg", "jpeg", "png", "webp"]:
                     file_extension = "jpg"
-                file_name = f"{safe_name}_{
-    hashlib.md5(
-        flower.name.encode()).hexdigest()[
-            :8]}.{file_extension}"
+                name_hash = hashlib.md5(flower.name.encode()).hexdigest()[:8]
+                file_name = f"{safe_name}_{name_hash}.{file_extension}"
 
                 image_content = ContentFile(response.content)
                 image_path = default_storage.save(f"flowers/{file_name}", image_content)
@@ -98,8 +96,8 @@ def reload_all_images():
 
             except requests.exceptions.RequestException as e:
                 logger.warning(
-                    f"⚠ Не удалось скачать изображение {image_url} для '{
-        flower.name}': {e}"
+                    f"⚠ Не удалось скачать изображение {image_url} "
+                    f"для '{flower.name}': {e}"
                 )
                 failed += 1
             except Exception as e:
