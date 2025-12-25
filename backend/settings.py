@@ -9,9 +9,6 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# Загружаем переменные окружения из .env файла
-load_dotenv()
-
 # Подавление предупреждения о development server
 os.environ.setdefault("DJANGO_SUPPRESS_DEV_SERVER_WARNING", "1")
 
@@ -22,7 +19,12 @@ warnings.filterwarnings("ignore", message=".*pkg_resources.*")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-9fqq&4rl22m_m+rkk@43dw)_d_vn=5#$+y$hg6@zv&rtwxeg%s")
+# Загружаем переменные окружения из .env файла
+load_dotenv(dotenv_path=BASE_DIR / ".env")
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY environment variable is not set!")
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost,flower-api.onrender.com").split(",")
 
