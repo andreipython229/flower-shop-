@@ -22,9 +22,9 @@ warnings.filterwarnings("ignore", message=".*pkg_resources.*")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent
 
-SECRET_KEY = "django-insecure-9fqq&4rl22m_m+rkk@43dw)_d_vn=5#$+y$hg6@zv&rtwxeg%s"
-DEBUG = True
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-9fqq&4rl22m_m+rkk@43dw)_d_vn=5#$+y$hg6@zv&rtwxeg%s")
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost,flower-api.onrender.com").split(",")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Для раздачи статических файлов на Render
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -52,10 +53,18 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+# CORS настройки для production и development
+CORS_ALLOWED_ORIGINS = os.environ.get(
+    "CORS_ALLOWED_ORIGINS",
+    "http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001,http://127.0.0.1:3001"
+).split(",")
+
+# Для Vercel - разрешаем все поддомены vercel.app
+CORS_ALLOW_CREDENTIALS = True
+if not DEBUG:
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        r"^https://.*\.vercel\.app$",
+    ]
 
 ROOT_URLCONF = "urls"
 
@@ -104,6 +113,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
@@ -153,3 +163,6 @@ DEFAULT_FROM_EMAIL = os.environ.get(
 # Telegram Bot Settings (опционально)
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
+
+# WhiteNoise settings для статических файлов
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
