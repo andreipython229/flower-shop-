@@ -50,6 +50,11 @@ def login(request):
             status=status.HTTP_401_UNAUTHORIZED,
         )
 
+    # Создаём профиль, если его нет
+    from .models import UserProfile
+    if not hasattr(user, "profile"):
+        UserProfile.objects.create(user=user)
+
     # Генерируем JWT токены
     refresh = RefreshToken.for_user(user)
     return Response(

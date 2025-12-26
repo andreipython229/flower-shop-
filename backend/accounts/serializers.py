@@ -17,7 +17,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     """Сериализатор для пользователя"""
 
-    profile = UserProfileSerializer(read_only=True)
+    profile = UserProfileSerializer(read_only=True, allow_null=True)
     password = serializers.CharField(
         write_only=True, required=True, validators=[validate_password]
     )
