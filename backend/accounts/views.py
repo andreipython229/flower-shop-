@@ -52,7 +52,11 @@ def login(request):
 
     # Создаём профиль, если его нет
     from .models import UserProfile
-    if not hasattr(user, "profile"):
+    try:
+        # Проверяем, есть ли профиль
+        user.profile
+    except UserProfile.DoesNotExist:
+        # Создаём профиль, если его нет
         UserProfile.objects.create(user=user)
 
     # Генерируем JWT токены
