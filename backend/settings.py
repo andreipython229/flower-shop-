@@ -63,11 +63,24 @@ CORS_ALLOWED_ORIGINS = os.environ.get(
 
 # Для Vercel и Netlify - разрешаем все поддомены vercel.app и netlify.app
 CORS_ALLOW_CREDENTIALS = True
-if not DEBUG:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.vercel\.app$",
-        r"^https://.*\.netlify\.app$",
-    ]
+# Добавляем regex для Netlify и Vercel (работает и в DEBUG, и в production)
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.vercel\.app$",
+    r"^https://.*\.netlify\.app$",
+]
+# Дополнительные настройки CORS
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 ROOT_URLCONF = "urls"
 
