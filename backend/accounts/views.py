@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth import authenticate
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
@@ -6,6 +8,8 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .serializers import RegisterSerializer, UserSerializer
+
+logger = logging.getLogger(__name__)
 
 
 @api_view(["POST"])
@@ -57,20 +61,35 @@ def login(request):
         user.profile
     except UserProfile.DoesNotExist:
         # Создаём профиль, если его нет
-        UserProfile.objects.create(user=user)
+        try:
+            UserProfile.objects.create(user=user)
+        except Exception as e:
+            logger.error(f"Ошибка при создании профиля: {e}", exc_info=True)
+            # Продолжаем без профиля
+    except Exception as e:
+        logger.error(f"Ошибка при проверке профиля: {e}", exc_info=True)
+        # Продолжаем без профиля
 
     # Генерируем JWT токены
-    refresh = RefreshToken.for_user(user)
-    return Response(
-        {
-            "user": UserSerializer(user).data,
-            "tokens": {
-                "refresh": str(refresh),
-                "access": str(refresh.access_token),
+    try:
+        refresh = RefreshToken.for_user(user)
+        user_data = UserSerializer(user).data
+        return Response(
+            {
+                "user": user_data,
+                "tokens": {
+                    "refresh": str(refresh),
+                    "access": str(refresh.access_token),
+                },
             },
-        },
-        status=status.HTTP_200_OK,
-    )
+            status=status.HTTP_200_OK,
+        )
+    except Exception as e:
+        logger.error(f"Ошибка при генерации токенов или сериализации: {e}", exc_info=True)
+        return Response(
+            {"error": "Внутренняя ошибка сервера"},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
 
 
 @api_view(["GET"])
