@@ -61,11 +61,12 @@ CORS_ALLOWED_ORIGINS = os.environ.get(
     "http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001,http://127.0.0.1:3001"
 ).split(",")
 
-# Для Vercel - разрешаем все поддомены vercel.app
+# Для Vercel и Netlify - разрешаем все поддомены vercel.app и netlify.app
 CORS_ALLOW_CREDENTIALS = True
 if not DEBUG:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         r"^https://.*\.vercel\.app$",
+        r"^https://.*\.netlify\.app$",
     ]
 
 ROOT_URLCONF = "urls"
