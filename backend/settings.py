@@ -104,8 +104,9 @@ WSGI_APPLICATION = "wsgi.application"
 
 # Настройки базы данных
 # Используем PostgreSQL из переменной окружения, если доступна, иначе SQLite для локальной разработки
+sqlite_path = BASE_DIR / "db.sqlite3"
 db_config = dj_database_url.config(
-    default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+    default=f"sqlite:///{sqlite_path}",
     conn_max_age=600,
 )
 

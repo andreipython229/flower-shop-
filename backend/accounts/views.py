@@ -56,6 +56,7 @@ def login(request):
 
     # Создаём профиль, если его нет
     from .models import UserProfile
+
     try:
         # Проверяем, есть ли профиль
         user.profile
@@ -85,7 +86,10 @@ def login(request):
             status=status.HTTP_200_OK,
         )
     except Exception as e:
-        logger.error(f"Ошибка при генерации токенов или сериализации: {e}", exc_info=True)
+        logger.error(
+            f"Ошибка при генерации токенов или сериализации: {e}",
+            exc_info=True,
+        )
         return Response(
             {"error": "Внутренняя ошибка сервера"},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,

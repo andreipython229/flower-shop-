@@ -54,7 +54,7 @@ class UserSerializer(serializers.ModelSerializer):
         # Если профиля нет, возвращаем None
         try:
             instance.profile
-        except:
+        except Exception:
             data["profile"] = None
         return data
 
