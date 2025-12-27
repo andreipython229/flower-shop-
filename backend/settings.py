@@ -8,6 +8,7 @@ from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
+import dj_database_url
 
 # Подавление предупреждения о development server
 os.environ.setdefault("DJANGO_SUPPRESS_DEV_SERVER_WARNING", "1")
@@ -101,11 +102,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "wsgi.application"
 
+# Настройки базы данных
+# Используем PostgreSQL из переменной окружения, если доступна, иначе SQLite для локальной разработки
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
