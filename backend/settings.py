@@ -104,11 +104,19 @@ WSGI_APPLICATION = "wsgi.application"
 
 # Настройки базы данных
 # Используем PostgreSQL из переменной окружения, если доступна, иначе SQLite для локальной разработки
+db_config = dj_database_url.config(
+    default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+    conn_max_age=600,
+)
+
+# Если используется PostgreSQL, убеждаемся что используется правильный драйвер
+if db_config.get("ENGINE") == "django.db.backends.postgresql":
+    # Для psycopg3 используем правильный backend
+    db_config["OPTIONS"] = db_config.get("OPTIONS", {})
+    # Django 5.2+ автоматически использует psycopg3 если доступен
+
 DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-    )
+    "default": db_config
 }
 
 AUTH_PASSWORD_VALIDATORS = [
