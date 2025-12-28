@@ -1,6 +1,7 @@
 import hashlib
 import logging
 import re
+import time
 from decimal import Decimal
 
 import requests
@@ -1221,12 +1222,19 @@ class FlowerParser:
                     f"⚠ Unsplash API ключ невалиден (401) для '{flower_name}'"
                 )
                 return None
+            elif response.status_code == 429:
+                # Rate limit исчерпан - используем fallback
+                logger.warning(
+                    f"⚠ Unsplash API rate limit исчерпан (429) для '{flower_name}'. "
+                    f"Используем fallback."
+                )
+                return self._get_fallback_image_url_for_flower(flower_name)
             elif response.status_code != 200:
                 logger.warning(
                     f"⚠ Unsplash API вернул статус {response.status_code} "
-                    f"для '{flower_name}'"
+                    f"для '{flower_name}'. Используем fallback."
                 )
-                return None
+                return self._get_fallback_image_url_for_flower(flower_name)
 
             data = response.json()
             if data.get("results") and len(data["results"]) > 0:
@@ -1712,6 +1720,41 @@ class FlowerParser:
         )
         return None
 
+    def _get_fallback_image_url_for_flower(self, flower_name):
+        """Fallback метод - возвращает статический URL изображения для цветка"""
+        # Используем хеш названия для выбора изображения из пула
+        flower_hash = int(
+            hashlib.md5(flower_name.encode("utf-8")).hexdigest()[:8], 16
+        )
+
+        # Пул статических URL изображений цветов
+        fallback_urls = [
+            "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/736230/pexels-photo-736230.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/1070535/pexels-photo-1070535.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/1408222/pexels-photo-1408222.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/1454286/pexels-photo-1454286.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/1608311/pexels-photo-1608311.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/169191/pexels-photo-169191.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/1793525/pexels-photo-1793525.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/2072167/pexels-photo-2072167.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/2072168/pexels-photo-2072168.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/2300713/pexels-photo-2300713.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/2300714/pexels-photo-2300714.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/2300715/pexels-photo-2300715.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/2300716/pexels-photo-2300716.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/2300717/pexels-photo-2300717.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/2300718/pexels-photo-2300718.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "https://images.pexels.com/photos/2300720/pexels-photo-2300720.jpeg?auto=compress&cs=tinysrgb&w=600",
+        ]
+
+        selected_url = fallback_urls[flower_hash % len(fallback_urls)]
+        logger.info(
+            f"✓ Использован fallback URL для '{flower_name}'"
+        )
+        return selected_url
+
     def _get_fallback_image_url(self, search_query):
         """Резервный метод - использует Unsplash Source API
         (без ключа) или прямые ссылки"""
@@ -1880,13 +1923,27 @@ class FlowerParser:
 
                 # Получаем URL изображения по названию цветка
                 # ПРИОРИТЕТ: Используем прямое русское название для точного маппинга
+                # Добавляем задержку для Unsplash API (чтобы не исчерпать rate limit)
+                if use_image_url and unsplash_request_count > 0 and unsplash_request_count % 10 == 0:
+                    time.sleep(1)  # Задержка 1 секунда каждые 10 запросов
+
                 image_url = self._get_flower_image_url_by_name(flower_data["name"])
+                if image_url:
+                    unsplash_request_count += 1
 
                 # Если не нашли по русскому названию, пробуем через search_query
                 if not image_url:
                     search_query = flower_data.get("search_query", flower_data["name"])
                     image_url = self._get_working_image_url(
                         flower_data["name"], search_query
+                    )
+                    if image_url:
+                        unsplash_request_count += 1
+
+                # Если всё ещё нет image_url, используем fallback
+                if not image_url and use_image_url:
+                    image_url = self._get_fallback_image_url_for_flower(
+                        flower_data["name"]
                     )
 
                 # Логируем результат получения изображения
