@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 # Маппинг названий цветов на конкретные URL изображений
 # Каждое название цветка → конкретное изображение
 FLOWER_IMAGE_MAP = {
-    # Розы
+    # Красные розы - правильное изображение красных роз (букет)
     "Красные розы (7 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
     "Красные розы (11 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
     "Красные розы (25 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
