@@ -45,6 +45,21 @@ class AccountsConfig(AppConfig):
                         print("=" * 60)
                     else:
                         print(f"✓ Found {flower_count} flowers in database")
+                        # Проверяем, есть ли цветы без image_url
+                        flowers_without_image = Flower.objects.filter(
+                            image_url__isnull=True
+                        ).count()
+                        if flowers_without_image > 0:
+                            print("=" * 60)
+                            print(
+                                f"Found {flowers_without_image} flowers without image_url. "
+                                f"Updating images..."
+                            )
+                            print("=" * 60)
+                            call_command("update_flower_images", verbosity=2)
+                            print("=" * 60)
+                            print("Image update completed!")
+                            print("=" * 60)
                 except Exception as e:
                     print(f"Error checking/parsing flowers: {e}")
 
