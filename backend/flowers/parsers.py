@@ -15,14 +15,8 @@ logger = logging.getLogger(__name__)
 # Маппинг названий цветов на конкретные URL изображений
 # Каждое название цветка → конкретное изображение
 FLOWER_IMAGE_MAP = {
-    # Красные розы - правильное изображение красных роз (букет)
-    "Красные розы (7 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "Красные розы (11 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "Красные розы (25 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "Красные розы (51 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "Красные розы (101 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "Красные розы (15 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "Красные розы (35 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
+    # Только карточка 140 - "Красные розы (7 шт)"
+    "Красные розы (7 шт)": "https://avatars.mds.yandex.net/i?id=ac1c91346f28a037ce490f75dff8a2c97339a0d9-3071260-images-thumbs&n=13",
     # Добавим остальные по мере получения скриншотов
 }
 
