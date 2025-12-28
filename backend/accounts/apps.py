@@ -22,18 +22,26 @@ class AccountsConfig(AppConfig):
                 print("Migrations completed!")
                 print("=" * 60)
 
-                # Проверяем, есть ли цветы в базе, если нет - запускаем парсинг
+                # Проверяем, есть ли цветы в базе, если меньше 100 - запускаем парсинг
                 try:
                     from flowers.models import Flower
 
                     flower_count = Flower.objects.count()
-                    if flower_count == 0:
+                    if flower_count < 100:
                         print("=" * 60)
-                        print("No flowers found in database. Starting parsing...")
+                        print(
+                            f"Found only {flower_count} flowers in database. "
+                            f"Starting parsing..."
+                        )
                         print("=" * 60)
+                        # Очищаем базу перед парсингом, если цветов мало
+                        if flower_count > 0:
+                            Flower.objects.all().delete()
+                            print("Database cleared before parsing")
                         call_command("parse_flowers", verbosity=2)
+                        final_count = Flower.objects.count()
                         print("=" * 60)
-                        print("Flowers parsing completed!")
+                        print(f"Flowers parsing completed! Total: {final_count}")
                         print("=" * 60)
                     else:
                         print(f"✓ Found {flower_count} flowers in database")

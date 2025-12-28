@@ -1862,8 +1862,14 @@ class FlowerParser:
             return []
 
     def save_flowers(self, flowers_data):
-        """КАК С СОБАКАМИ: Скачивает изображения по названию и сохраняет локально"""
+        """Сохраняет цветы в базу данных.
+        На продакшн (Render) использует image_url, на локально - файлы."""
+        import os
+
         saved_count = 0
+        error_count = 0
+        # На Render используем URL, на локально - файлы
+        use_image_url = os.environ.get("DATABASE_URL") is not None
 
         for flower_data in flowers_data:
             try:
@@ -1885,9 +1891,9 @@ class FlowerParser:
 
                 image_file = None
 
-                # КАК С СОБАЧКАМИ: Скачиваем изображение и сохраняем локально
-                # ВАЖНО: Скачиваем ТОЛЬКО если URL найден и проверен
-                if image_url:
+                # На продакшн (Render) не скачиваем файлы - используем только URL
+                # На локально скачиваем и сохраняем файлы
+                if image_url and not use_image_url:
                     try:
                         # Пробуем скачать с текущего URL
                         response = requests.get(
@@ -1981,40 +1987,54 @@ class FlowerParser:
                         f"Будет использован placeholder."
                     )
 
-                # Обновляем или создаем запись о цветке с локальным изображением
-                # (КАК С СОБАЧКАМИ)
-                # ВАЖНО: Не обновляем изображение, если оно уже есть
+                # На Render используем image_url вместо сохранения файлов
+                # (ephemeral storage не сохраняет файлы)
+                use_image_url = os.environ.get("DATABASE_URL") is not None
+
+                # Обновляем или создаем запись о цветке
                 flower, created = Flower.objects.get_or_create(
                     name=flower_data["name"],
                     defaults={
                         "description": flower_data["description"],
                         "price": Decimal(str(flower_data["price"])),
                         "category": category,
-                        # Сохраняем локально (как с собачками), или None для placeholder
-                        "image": image_file,
-                        # НЕ сохраняем внешние URL (используем только локальные файлы)
-                        "image_url": None,
+                        # На продакшн используем URL, на локально - файл
+                        "image": image_file if not use_image_url else None,
+                        "image_url": image_url if use_image_url else None,
                         "in_stock": True,
                     },
                 )
 
-                # Обновляем только если изображения нет, но мы его скачали
-                if not created and not flower.image and image_file:
-                    flower.image = image_file
-                    flower.description = flower_data["description"]
-                    flower.price = Decimal(str(flower_data["price"]))
-                    flower.category = category
-                    flower.in_stock = True
-                    flower.save()
+                # Обновляем только если изображения нет, но мы его получили
+                if not created:
+                    updated = False
+                    if use_image_url and not flower.image_url and image_url:
+                        flower.image_url = image_url
+                        updated = True
+                    elif not use_image_url and not flower.image and image_file:
+                        flower.image = image_file
+                        updated = True
+                    if updated:
+                        flower.description = flower_data["description"]
+                        flower.price = Decimal(str(flower_data["price"]))
+                        flower.category = category
+                        flower.in_stock = True
+                        flower.save()
                 saved_count += 1
                 action = "Создан" if created else "Обновлен"
                 logger.info(f"✓ {action} цветок: {flower_data['name']}")
 
             except Exception as e:
-                logger.error(f"Ошибка при сохранении цветка: {str(e)}")
+                error_count += 1
+                logger.error(
+                    f"Ошибка при сохранении цветка '{flower_data.get('name', 'unknown')}': {str(e)}"
+                )
+                # Продолжаем парсинг даже при ошибках
                 continue
 
         logger.info(f"Всего сохранено цветов: {saved_count}")
+        if error_count > 0:
+            logger.warning(f"Ошибок при сохранении: {error_count}")
 
 
 if __name__ == "__main__":
