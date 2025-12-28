@@ -1889,6 +1889,16 @@ class FlowerParser:
                         flower_data["name"], search_query
                     )
 
+                # Логируем результат получения изображения
+                if image_url:
+                    logger.info(
+                        f"✓ Получен image_url для '{flower_data['name']}': {image_url[:50]}..."
+                    )
+                else:
+                    logger.warning(
+                        f"⚠ image_url не получен для '{flower_data['name']}'"
+                    )
+
                 image_file = None
 
                 # На продакшн (Render) не скачиваем файлы - используем только URL
@@ -2005,20 +2015,29 @@ class FlowerParser:
                     },
                 )
 
-                # Обновляем только если изображения нет, но мы его получили
+                # Обновляем цветок, если изображение получено или данные изменились
                 if not created:
                     updated = False
-                    if use_image_url and not flower.image_url and image_url:
+                    # На продакшн обновляем image_url, если он получен
+                    if use_image_url and image_url and flower.image_url != image_url:
                         flower.image_url = image_url
                         updated = True
-                    elif not use_image_url and not flower.image and image_file:
+                    # На локально обновляем image, если он получен
+                    elif not use_image_url and image_file and not flower.image:
                         flower.image = image_file
                         updated = True
-                    if updated:
+                    # Обновляем другие поля, если они изменились
+                    if (
+                        flower.description != flower_data["description"]
+                        or flower.price != Decimal(str(flower_data["price"]))
+                        or flower.category != category
+                    ):
                         flower.description = flower_data["description"]
                         flower.price = Decimal(str(flower_data["price"]))
                         flower.category = category
                         flower.in_stock = True
+                        updated = True
+                    if updated:
                         flower.save()
                 saved_count += 1
                 action = "Создан" if created else "Обновлен"
