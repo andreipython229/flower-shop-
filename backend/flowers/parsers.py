@@ -12,6 +12,20 @@ from .models import Category, Flower
 
 logger = logging.getLogger(__name__)
 
+# Маппинг названий цветов на конкретные URL изображений
+# Каждое название цветка → конкретное изображение
+FLOWER_IMAGE_MAP = {
+    # Розы
+    "Красные розы (7 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "Красные розы (11 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "Красные розы (25 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "Красные розы (51 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "Красные розы (101 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "Красные розы (15 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "Красные розы (35 шт)": "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
+    # Добавим остальные по мере получения скриншотов
+}
+
 
 class FlowerParser:
     def __init__(self):
@@ -1921,26 +1935,33 @@ class FlowerParser:
                     name=flower_data["category"]
                 )
 
-                # Получаем URL изображения по названию цветка
-                # ПРИОРИТЕТ: Используем прямое русское название для точного маппинга
-                # Добавляем задержку для Unsplash API (чтобы не исчерпать rate limit)
-                if use_image_url and unsplash_request_count > 0 and unsplash_request_count % 10 == 0:
-                    time.sleep(1)  # Задержка 1 секунда каждые 10 запросов
-
-                image_url = self._get_flower_image_url_by_name(flower_data["name"])
+                # ПРИОРИТЕТ 1: Проверяем маппинг (точное соответствие названия)
+                image_url = FLOWER_IMAGE_MAP.get(flower_data["name"])
                 if image_url:
-                    unsplash_request_count += 1
-
-                # Если не нашли по русскому названию, пробуем через search_query
-                if not image_url:
-                    search_query = flower_data.get("search_query", flower_data["name"])
-                    image_url = self._get_working_image_url(
-                        flower_data["name"], search_query
+                    logger.info(
+                        f"✓ Использован маппинг для '{flower_data['name']}'"
                     )
+
+                # ПРИОРИТЕТ 2: Если нет в маппинге, пробуем Unsplash API
+                if not image_url:
+                    # Добавляем задержку для Unsplash API (чтобы не исчерпать rate limit)
+                    if use_image_url and unsplash_request_count > 0 and unsplash_request_count % 10 == 0:
+                        time.sleep(1)  # Задержка 1 секунда каждые 10 запросов
+
+                    image_url = self._get_flower_image_url_by_name(flower_data["name"])
                     if image_url:
                         unsplash_request_count += 1
 
-                # Если всё ещё нет image_url, используем fallback
+                    # Если не нашли по русскому названию, пробуем через search_query
+                    if not image_url:
+                        search_query = flower_data.get("search_query", flower_data["name"])
+                        image_url = self._get_working_image_url(
+                            flower_data["name"], search_query
+                        )
+                        if image_url:
+                            unsplash_request_count += 1
+
+                # ПРИОРИТЕТ 3: Если всё ещё нет image_url, используем fallback
                 if not image_url and use_image_url:
                     image_url = self._get_fallback_image_url_for_flower(
                         flower_data["name"]
