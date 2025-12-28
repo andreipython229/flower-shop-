@@ -23,6 +23,8 @@ FLOWER_IMAGE_MAP = {
     "Красные розы (25 шт)": "https://avatars.mds.yandex.net/i?id=67b4152d9748f77e334d3e140807b1af024f2d57-9854329-images-thumbs&n=13",
     # Карточка 137 - "Красные розы (51 шт)"
     "Красные розы (51 шт)": "https://avatars.mds.yandex.net/get-mpic/12411215/2a00000199b372ea878b3e73f25ada32e595/orig",
+    # Карточка 136 - "Красные розы (101 шт)"
+    "Красные розы (101 шт)": "https://cerenas.club/uploads/posts/2022-12/1670271212_cerenas-club-p-million-alikh-roz-pinterest-2.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
