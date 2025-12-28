@@ -21,6 +21,8 @@ FLOWER_IMAGE_MAP = {
     "Красные розы (11 шт)": "https://avatars.mds.yandex.net/i?id=36c0a0467f54b2ee1ad93e8983d3eaf3fe717a7d-5233397-images-thumbs&n=13",
     # Карточка 138 - "Красные розы (25 шт)"
     "Красные розы (25 шт)": "https://avatars.mds.yandex.net/i?id=67b4152d9748f77e334d3e140807b1af024f2d57-9854329-images-thumbs&n=13",
+    # Карточка 137 - "Красные розы (51 шт)"
+    "Красные розы (51 шт)": "https://avatars.mds.yandex.net/get-mpic/12411215/2a00000199b372ea878b3e73f25ada32e595/orig",
     # Добавим остальные по мере получения скриншотов
 }
 
