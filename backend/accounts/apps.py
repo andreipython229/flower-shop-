@@ -25,8 +25,14 @@ class AccountsConfig(AppConfig):
                 # Проверяем, есть ли цветы в базе, если меньше 100 - запускаем парсинг
                 try:
                     from flowers.models import Flower
+                    import traceback
 
+                    print("=" * 60)
+                    print("Checking flowers in database...")
+                    print("=" * 60)
                     flower_count = Flower.objects.count()
+                    print(f"Found {flower_count} flowers in database")
+                    
                     if flower_count < 100:
                         print("=" * 60)
                         print(
@@ -43,18 +49,28 @@ class AccountsConfig(AppConfig):
                         print("=" * 60)
                         print(f"Flowers parsing completed! Total: {final_count}")
                         print("=" * 60)
-                    else:
-                        print(f"✓ Found {flower_count} flowers in database")
-                        # Всегда обновляем изображения из маппинга при старте
-                        print("=" * 60)
-                        print("Updating flower images from mapping...")
-                        print("=" * 60)
+                    
+                    # ВСЕГДА обновляем изображения из маппинга при старте
+                    print("=" * 60)
+                    print("Updating flower images from mapping...")
+                    print("=" * 60)
+                    try:
                         call_command("update_flower_images", verbosity=2)
                         print("=" * 60)
                         print("Image update completed!")
                         print("=" * 60)
+                    except Exception as update_error:
+                        print("=" * 60)
+                        print(f"ERROR during image update: {update_error}")
+                        print(traceback.format_exc())
+                        print("=" * 60)
+                        
                 except Exception as e:
-                    print(f"Error checking/parsing flowers: {e}")
+                    print("=" * 60)
+                    print(f"ERROR checking/parsing flowers: {e}")
+                    import traceback
+                    print(traceback.format_exc())
+                    print("=" * 60)
 
             except Exception as e:
                 print(f"Error applying migrations: {e}")
