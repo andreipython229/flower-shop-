@@ -55,6 +55,8 @@ FLOWER_IMAGE_MAP = {
     "Красные гвоздики (25 шт)": "https://www.roza4u.ru/image/catalog/krasnaya_gvozdika/100_krasnyh_gvozdik_5.jpg",
     # Карточка 121 - "Розовые гвоздики (15 шт)"
     "Розовые гвоздики (15 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/09/1715770832_95635309.jpg",
+    # Карточка 120 - "Розовые гвоздики (25 шт)"
+    "Розовые гвоздики (25 шт)": "https://i.pinimg.com/736x/ef/5e/9f/ef5e9fe2dd010882e5f657792098aabb.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
