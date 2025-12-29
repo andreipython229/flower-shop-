@@ -45,6 +45,8 @@ FLOWER_IMAGE_MAP = {
     "Оранжевые розы (11 шт)": "https://i.pinimg.com/736x/d3/6c/d4/d36cd4c61075cf33ec4a94032686d026.jpg",
     # Карточка 126 - "Персиковые розы (11 шт)"
     "Персиковые розы (11 шт)": "https://avatars.mds.yandex.net/get-mpic/5249393/img_id4807946301488324235.jpeg/orig",
+    # Карточка 125 - "Бордовые розы (11 шт)"
+    "Бордовые розы (11 шт)": "https://img.freepik.com/premium-photo/close-up-rose-bouquet_1048944-22846977.jpg?semt=ais_hybrid&w=740",
     # Добавим остальные по мере получения скриншотов
 }
 
