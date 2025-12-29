@@ -63,6 +63,8 @@ FLOWER_IMAGE_MAP = {
     "Белые гвоздики (25 шт)": "https://i.pinimg.com/736x/48/31/d3/4831d39e0341315e7d750ec15f9005dd.jpg",
     # Карточка 117 - "Желтые гвоздики (15 шт)"
     "Желтые гвоздики (15 шт)": "https://www.kalitecicek.com/Upload/sari-karanfiller.jpg",
+    # Карточка 116 - "Смешанные гвоздики (25 шт)"
+    "Смешанные гвоздики (25 шт)": "https://i.pinimg.com/originals/fe/c6/34/fec6348b9a0cafbe100bee989abd7f59.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
