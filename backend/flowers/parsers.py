@@ -57,6 +57,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые гвоздики (15 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/09/1715770832_95635309.jpg",
     # Карточка 120 - "Розовые гвоздики (25 шт)"
     "Розовые гвоздики (25 шт)": "https://i.pinimg.com/736x/ef/5e/9f/ef5e9fe2dd010882e5f657792098aabb.jpg",
+    # Карточка 119 - "Белые гвоздики (15 шт)"
+    "Белые гвоздики (15 шт)": "https://dari-cvety.com/assets/images/products/1142/buket-iz-15-belyh-gvozdik-1.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
