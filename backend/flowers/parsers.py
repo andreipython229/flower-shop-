@@ -51,6 +51,8 @@ FLOWER_IMAGE_MAP = {
     "Двухцветные розы (11 шт)": "https://krasflowers.ru/components/com_jshopping/files/img_products/roza-cabaret.webp",
     # Карточка 123 - "Красные гвоздики (15 шт)"
     "Красные гвоздики (15 шт)": "https://magicalflower.ru/image/catalog/51rozafotoset/fotosessija14.04/14.04.21_0557.jpg",
+    # Карточка 122 - "Красные гвоздики (25 шт)"
+    "Красные гвоздики (25 шт)": "https://www.roza4u.ru/image/catalog/krasnaya_gvozdika/100_krasnyh_gvozdik_5.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
