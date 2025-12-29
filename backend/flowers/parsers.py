@@ -37,6 +37,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые розы (11 шт)": "https://i.pinimg.com/474x/11/64/26/11642647756e3ef97f8eac0457275bda.jpg",
     # Карточка 130 - "Розовые розы (25 шт)"
     "Розовые розы (25 шт)": "https://vsemroza.ru/wp-content/uploads/2025/04/1726187986_77557071.jpg",
+    # Карточка 129 - "Жёлтые розы (7 шт)"
+    "Жёлтые розы (7 шт)": "https://img.freepik.com/premium-photo/close-up-rose-bouquet_1048944-16213795.jpg?semt=ais_hybrid&w=740&q=80",
     # Добавим остальные по мере получения скриншотов
 }
 
