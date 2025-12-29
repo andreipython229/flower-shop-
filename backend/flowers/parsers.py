@@ -30,7 +30,7 @@ FLOWER_IMAGE_MAP = {
     # Карточка 134 - "Белые розы (11 шт)"
     "Белые розы (11 шт)": "https://i.pinimg.com/originals/1c/da/e5/1cdae55c6ef128a109c6120240430d41.jpg",
     # Карточка 133 - "Белые розы (25 шт)"
-    "Белые розы (25 шт)": "https://gas-kvas.com/grafic/uploads/posts/2023-10/1696470650_gas-kvas-com-p-kartinki-krasivie-belie-8.jpg",
+    "Белые розы (25 шт)": "https://cdn.shopify.com/s/files/1/0011/5209/0167/products/Vendela_0487_1024x.jpg",
     # Карточка 132 - "Розовые розы (7 шт)"
     "Розовые розы (7 шт)": "https://thumbs.dreamstime.com/b/%D0%BA%D1%80%D1%83%D0%BF%D0%BD%D1%8B%D0%BC-%D0%BF%D0%BB%D0%B0%D0%BD%D0%BE%D0%BC-%D0%BA%D1%80%D0%B0%D1%81%D0%B8%D0%B2%D1%8B%D1%85-%D1%80%D0%BE%D0%B7%D0%BE%D0%B2%D1%8B%D1%85-%D1%80%D0%BE%D0%B7-%D0%B1%D1%83%D0%BA%D0%B5%D1%82-%D0%B4%D0%BB%D1%8F-valentine-%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%B8-%D1%81%D0%B2%D0%B0%D0%B4%D1%8C%D0%B1%D0%B0-166652135.jpg",
     # Карточка 131 - "Розовые розы (11 шт)"
