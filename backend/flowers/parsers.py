@@ -47,6 +47,8 @@ FLOWER_IMAGE_MAP = {
     "Персиковые розы (11 шт)": "https://avatars.mds.yandex.net/get-mpic/5249393/img_id4807946301488324235.jpeg/orig",
     # Карточка 125 - "Бордовые розы (11 шт)"
     "Бордовые розы (11 шт)": "https://img.freepik.com/premium-photo/close-up-rose-bouquet_1048944-22846977.jpg?semt=ais_hybrid&w=740",
+    # Карточка 124 - "Двухцветные розы (11 шт)"
+    "Двухцветные розы (11 шт)": "https://krasflowers.ru/components/com_jshopping/files/img_products/roza-cabaret.webp",
     # Добавим остальные по мере получения скриншотов
 }
 
