@@ -27,6 +27,8 @@ FLOWER_IMAGE_MAP = {
     "Красные розы (101 шт)": "https://cerenas.club/uploads/posts/2022-12/1670271212_cerenas-club-p-million-alikh-roz-pinterest-2.jpg",
     # Карточка 135 - "Белые розы (7 шт)"
     "Белые розы (7 шт)": "https://img.freepik.com/foto-gratis/vista-delicadas-flores-rosas-blancas_23-2150540009.jpg?semt=ais_hybrid&w=740",
+    # Карточка 134 - "Белые розы (11 шт)"
+    "Белые розы (11 шт)": "https://i.pinimg.com/originals/1c/da/e5/1cdae55c6ef128a109c6120240430d41.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
