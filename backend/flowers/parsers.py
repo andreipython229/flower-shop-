@@ -49,6 +49,8 @@ FLOWER_IMAGE_MAP = {
     "Бордовые розы (11 шт)": "https://img.freepik.com/premium-photo/close-up-rose-bouquet_1048944-22846977.jpg?semt=ais_hybrid&w=740",
     # Карточка 124 - "Двухцветные розы (11 шт)"
     "Двухцветные розы (11 шт)": "https://krasflowers.ru/components/com_jshopping/files/img_products/roza-cabaret.webp",
+    # Карточка 123 - "Красные гвоздики (15 шт)"
+    "Красные гвоздики (15 шт)": "https://magicalflower.ru/image/catalog/51rozafotoset/fotosessija14.04/14.04.21_0557.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
