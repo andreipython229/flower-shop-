@@ -59,6 +59,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые гвоздики (25 шт)": "https://i.pinimg.com/736x/ef/5e/9f/ef5e9fe2dd010882e5f657792098aabb.jpg",
     # Карточка 119 - "Белые гвоздики (15 шт)"
     "Белые гвоздики (15 шт)": "https://dari-cvety.com/assets/images/products/1142/buket-iz-15-belyh-gvozdik-1.jpg",
+    # Карточка 118 - "Белые гвоздики (25 шт)"
+    "Белые гвоздики (25 шт)": "https://i.pinimg.com/736x/48/31/d3/4831d39e0341315e7d750ec15f9005dd.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
