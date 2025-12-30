@@ -1156,9 +1156,17 @@ class FlowerParser:
         self.UNSPLASH_API_URL = "https://api.unsplash.com/search/photos"
 
     def _get_flower_image_url_by_name(self, flower_name):
-        """Использует Unsplash API для получения правильных изображений
+        """Использует IMAGE_MAPPING или Unsplash API для получения правильных изображений
         цветов по названию"""
         try:
+            # Сначала проверяем маппинг изображений
+            if flower_name in IMAGE_MAPPING:
+                image_url = IMAGE_MAPPING[flower_name]
+                logger.info(
+                    f"✓ Найдено изображение в IMAGE_MAPPING для '{flower_name}'"
+                )
+                return image_url
+            
             # Очищаем название от количества в скобках
             clean_name = re.sub(r"\s*\(\d+\s*шт\)", "", flower_name.lower()).strip()
 
