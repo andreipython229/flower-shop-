@@ -99,6 +99,8 @@ FLOWER_IMAGE_MAP = {
     "Синие васильки (25 шт)": "https://thumbs.dreamstime.com/b/%D1%84%D0%BE%D0%BD-%D0%B2%D0%B0%D1%81%D0%B8%D0%BB%D1%8C%D0%BA%D0%BE%D0%B2-%D1%86%D0%B2%D0%B5%D1%82%D1%8B-223534388.jpg",
     # Карточка 99 - "Синие васильки (40 шт)"
     "Синие васильки (40 шт)": "https://i.pinimg.com/originals/45/c0/e8/45c0e8082d478c96822983bb326a5188.jpg",
+    # Карточка 98 - "Васильки и ромашки (30 шт)"
+    "Васильки и ромашки (30 шт)": "https://masterpiecer-images.s3.yandex.net/c1f3128182fc11ee85d2d659965eed18:upscaled",
     # Добавим остальные по мере получения скриншотов
 }
 
