@@ -87,6 +87,8 @@ FLOWER_IMAGE_MAP = {
     "Смешанные герберы (15 шт)": "https://florrf.ru/uploads/origin/models/1140616.jpg",
     # Карточка 105 - "Белые ромашки (20 шт)"
     "Белые ромашки (20 шт)": "https://upload.wikimedia.org/wikipedia/commons/1/10/%D0%91%D0%B5%D0%BB%D1%8B%D0%B5_%D1%80%D0%BE%D0%BC%D0%B0%D1%88%D0%BA%D0%B8.jpg",
+    # Карточка 104 - "Белые ромашки (30 шт)"
+    "Белые ромашки (30 шт)": "https://img.goodfon.ru/original/7360x4912/3/8c/tsvety-romashki-belye-nivianik-mnogo-kust.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
