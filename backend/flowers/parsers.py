@@ -71,6 +71,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые герберы (15 шт)": "https://png.pngtree.com/thumb_back/fh260/background/20240108/pngtree-gorgeous-texture-background-featuring-a-yellow-gerbera-daisy-image_13703868.png",
     # Карточка 113 - "Красные герберы (9 шт)"
     "Красные герберы (9 шт)": "https://bazacvetov24.ru/products/7717/buket-iveyn-bm8-dop_7567_lg.jpg",
+    # Карточка 112 - "Красные герберы (15 шт)"
+    "Красные герберы (15 шт)": "https://gor-cvety.ru/photos/568ede1d_3111b215.jpeg",
     # Добавим остальные по мере получения скриншотов
 }
 
