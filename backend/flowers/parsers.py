@@ -69,6 +69,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые герберы (9 шт)": "https://bolshoy-kamen.flowlove.ru/wp-content/themes/init/catalog/images/catalog/zheltyye-gerbery-medium.webp",
     # Карточка 114 - "Желтые герберы (15 шт)"
     "Желтые герберы (15 шт)": "https://png.pngtree.com/thumb_back/fh260/background/20240108/pngtree-gorgeous-texture-background-featuring-a-yellow-gerbera-daisy-image_13703868.png",
+    # Карточка 113 - "Красные герберы (9 шт)"
+    "Красные герберы (9 шт)": "https://bazacvetov24.ru/products/7717/buket-iveyn-bm8-dop_7567_lg.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
