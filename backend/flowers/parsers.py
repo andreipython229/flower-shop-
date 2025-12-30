@@ -109,6 +109,8 @@ FLOWER_IMAGE_MAP = {
     "Красные тюльпаны (21 шт)": "https://i.pinimg.com/originals/c8/c8/ea/c8c8ea8da77d67574c70b30ba73859eb.jpg",
     # Карточка 94 - "Желтые тюльпаны (11 шт)"
     "Желтые тюльпаны (11 шт)": "https://i.pinimg.com/originals/34/a5/3f/34a53fcfaf51bab2ffce3ddc8b1f448c.jpg",
+    # Карточка 93 - "Желтые тюльпаны (21 шт)"
+    "Желтые тюльпаны (21 шт)": "https://i.pinimg.com/originals/81/8b/48/818b486d2419ac12eeee040058bfcafe.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
