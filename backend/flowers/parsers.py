@@ -105,6 +105,8 @@ FLOWER_IMAGE_MAP = {
     "Васильки и ромашки (50 шт)": "https://prv1.lori-images.net/vasilki-v-forme-serdtsa-na-fone-romashek-0006168293-preview.jpg",
     # Карточка 96 - "Красные тюльпаны (11 шт)"
     "Красные тюльпаны (11 шт)": "https://img.freepik.com/free-photo/red-blooming-tulips-bouquet_23-2148409567.jpg?semt=ais_hybrid&w=740&q=80",
+    # Карточка 95 - "Красные тюльпаны (21 шт)"
+    "Красные тюльпаны (21 шт)": "https://i.pinimg.com/originals/c8/c8/ea/c8c8ea8da77d67574c70b30ba73859eb.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
