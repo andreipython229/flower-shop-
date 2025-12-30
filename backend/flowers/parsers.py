@@ -115,6 +115,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые тюльпаны (11 шт)": "https://i.pinimg.com/236x/25/8d/52/258d52354f80a9bfe7004df11493b219.jpg?nii=t",
     # Карточка 91 - "Розовые тюльпаны (21 шт)"
     "Розовые тюльпаны (21 шт)": "https://abrakadabra.fun/uploads/posts/2021-11/1636804259_27-abrakadabra-fun-p-nezhnie-tyulpani-32.jpg",
+    # Карточка 90 - "Белые тюльпаны (11 шт)"
+    "Белые тюльпаны (11 шт)": "https://img.freepik.com/premium-photo/white-tulips-isolated-white-background_444198-1770.jpg?w=2000",
     # Добавим остальные по мере получения скриншотов
 }
 
