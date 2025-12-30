@@ -1,7 +1,6 @@
 import hashlib
 import logging
 import re
-import time
 from decimal import Decimal
 
 import requests
@@ -12,114 +11,10 @@ from .models import Category, Flower
 
 logger = logging.getLogger(__name__)
 
-# Маппинг названий цветов на конкретные URL изображений
-# Каждое название цветка → конкретное изображение
-FLOWER_IMAGE_MAP = {
-    # Карточка 140 - "Красные розы (7 шт)"
-    "Красные розы (7 шт)": "https://avatars.mds.yandex.net/i?id=ac1c91346f28a037ce490f75dff8a2c97339a0d9-3071260-images-thumbs&n=13",
-    # Карточка 139 - "Красные розы (11 шт)"
-    "Красные розы (11 шт)": "https://avatars.mds.yandex.net/i?id=36c0a0467f54b2ee1ad93e8983d3eaf3fe717a7d-5233397-images-thumbs&n=13",
-    # Карточка 138 - "Красные розы (25 шт)"
-    "Красные розы (25 шт)": "https://avatars.mds.yandex.net/i?id=67b4152d9748f77e334d3e140807b1af024f2d57-9854329-images-thumbs&n=13",
-    # Карточка 137 - "Красные розы (51 шт)"
-    "Красные розы (51 шт)": "https://avatars.mds.yandex.net/get-mpic/12411215/2a00000199b372ea878b3e73f25ada32e595/orig",
-    # Карточка 136 - "Красные розы (101 шт)"
-    "Красные розы (101 шт)": "https://cerenas.club/uploads/posts/2022-12/1670271212_cerenas-club-p-million-alikh-roz-pinterest-2.jpg",
-    # Карточка 135 - "Белые розы (7 шт)"
-    "Белые розы (7 шт)": "https://img.freepik.com/foto-gratis/vista-delicadas-flores-rosas-blancas_23-2150540009.jpg?semt=ais_hybrid&w=740",
-    # Карточка 134 - "Белые розы (11 шт)"
-    "Белые розы (11 шт)": "https://i.pinimg.com/originals/1c/da/e5/1cdae55c6ef128a109c6120240430d41.jpg",
-    # Карточка 133 - "Белые розы (25 шт)"
-    "Белые розы (25 шт)": "https://cdn.shopify.com/s/files/1/0011/5209/0167/products/Vendela_0487_1024x.jpg",
-    # Карточка 132 - "Розовые розы (7 шт)"
-    "Розовые розы (7 шт)": "https://thumbs.dreamstime.com/b/%D0%BA%D1%80%D1%83%D0%BF%D0%BD%D1%8B%D0%BC-%D0%BF%D0%BB%D0%B0%D0%BD%D0%BE%D0%BC-%D0%BA%D1%80%D0%B0%D1%81%D0%B8%D0%B2%D1%8B%D1%85-%D1%80%D0%BE%D0%B7%D0%BE%D0%B2%D1%8B%D1%85-%D1%80%D0%BE%D0%B7-%D0%B1%D1%83%D0%BA%D0%B5%D1%82-%D0%B4%D0%BB%D1%8F-valentine-%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%B8-%D1%81%D0%B2%D0%B0%D0%B4%D1%8C%D0%B1%D0%B0-166652135.jpg",
-    # Карточка 131 - "Розовые розы (11 шт)"
-    "Розовые розы (11 шт)": "https://i.pinimg.com/474x/11/64/26/11642647756e3ef97f8eac0457275bda.jpg",
-    # Карточка 130 - "Розовые розы (25 шт)"
-    "Розовые розы (25 шт)": "https://vsemroza.ru/wp-content/uploads/2025/04/1726187986_77557071.jpg",
-    # Карточка 129 - "Желтые розы (7 шт)"
-    "Желтые розы (7 шт)": "https://img.freepik.com/premium-photo/close-up-rose-bouquet_1048944-16213795.jpg?semt=ais_hybrid&w=740&q=80",
-    # Карточка 128 - "Желтые розы (11 шт)"
-    "Желтые розы (11 шт)": "https://img.freepik.com/free-photo/beautiful-spring-flowers_23-2151919590.jpg?semt=ais_hybrid&w=740",
-    # Карточка 127 - "Оранжевые розы (11 шт)"
-    "Оранжевые розы (11 шт)": "https://i.pinimg.com/736x/d3/6c/d4/d36cd4c61075cf33ec4a94032686d026.jpg",
-    # Карточка 126 - "Персиковые розы (11 шт)"
-    "Персиковые розы (11 шт)": "https://avatars.mds.yandex.net/get-mpic/5249393/img_id4807946301488324235.jpeg/orig",
-    # Карточка 125 - "Бордовые розы (11 шт)"
-    "Бордовые розы (11 шт)": "https://img.freepik.com/premium-photo/close-up-rose-bouquet_1048944-22846977.jpg?semt=ais_hybrid&w=740",
-    # Карточка 124 - "Двухцветные розы (11 шт)"
-    "Двухцветные розы (11 шт)": "https://krasflowers.ru/components/com_jshopping/files/img_products/roza-cabaret.webp",
-    # Карточка 123 - "Красные гвоздики (15 шт)"
-    "Красные гвоздики (15 шт)": "https://magicalflower.ru/image/catalog/51rozafotoset/fotosessija14.04/14.04.21_0557.jpg",
-    # Карточка 122 - "Красные гвоздики (25 шт)"
-    "Красные гвоздики (25 шт)": "https://www.roza4u.ru/image/catalog/krasnaya_gvozdika/100_krasnyh_gvozdik_5.jpg",
-    # Карточка 121 - "Розовые гвоздики (15 шт)"
-    "Розовые гвоздики (15 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/09/1715770832_95635309.jpg",
-    # Карточка 120 - "Розовые гвоздики (25 шт)"
-    "Розовые гвоздики (25 шт)": "https://i.pinimg.com/736x/ef/5e/9f/ef5e9fe2dd010882e5f657792098aabb.jpg",
-    # Карточка 119 - "Белые гвоздики (15 шт)"
-    "Белые гвоздики (15 шт)": "https://dari-cvety.com/assets/images/products/1142/buket-iz-15-belyh-gvozdik-1.jpg",
-    # Карточка 118 - "Белые гвоздики (25 шт)"
-    "Белые гвоздики (25 шт)": "https://i.pinimg.com/736x/48/31/d3/4831d39e0341315e7d750ec15f9005dd.jpg",
-    # Карточка 117 - "Желтые гвоздики (15 шт)"
-    "Желтые гвоздики (15 шт)": "https://www.kalitecicek.com/Upload/sari-karanfiller.jpg",
-    # Карточка 116 - "Смешанные гвоздики (25 шт)"
-    "Смешанные гвоздики (25 шт)": "https://i.pinimg.com/originals/fe/c6/34/fec6348b9a0cafbe100bee989abd7f59.jpg",
-    # Карточка 115 - "Желтые герберы (9 шт)"
-    "Желтые герберы (9 шт)": "https://bolshoy-kamen.flowlove.ru/wp-content/themes/init/catalog/images/catalog/zheltyye-gerbery-medium.webp",
-    # Карточка 114 - "Желтые герберы (15 шт)"
-    "Желтые герберы (15 шт)": "https://png.pngtree.com/thumb_back/fh260/background/20240108/pngtree-gorgeous-texture-background-featuring-a-yellow-gerbera-daisy-image_13703868.png",
-    # Карточка 113 - "Красные герберы (9 шт)"
-    "Красные герберы (9 шт)": "https://bazacvetov24.ru/products/7717/buket-iveyn-bm8-dop_7567_lg.jpg",
-    # Карточка 112 - "Красные герберы (15 шт)"
-    "Красные герберы (15 шт)": "https://gor-cvety.ru/photos/568ede1d_3111b215.jpeg",
-    # Карточка 111 - "Розовые герберы (9 шт)"
-    "Розовые герберы (9 шт)": "https://ir.ozone.ru/s3/multimedia-u/6391846242.jpg",
-    # Карточка 110 - "Розовые герберы (15 шт)"
-    "Розовые герберы (15 шт)": "https://gor-cvety.ru/photos/b930f0ec_4413354a.jpeg",
-    # Карточка 109 - "Оранжевые герберы (9 шт)"
-    "Оранжевые герберы (9 шт)": "https://cs1.livemaster.ru/storage/39/00/4648a0a40f6e6afd7fa7240a836v--sumki-i-aksessuary-sumka-malenkaya-gerbera.jpg",
-    # Карточка 108 - "Оранжевые герберы (15 шт)"
-    "Оранжевые герберы (15 шт)": "https://gor-cvety.ru/photos/8b1c41a4_c43bcf84.jpeg",
-    # Карточка 107 - "Белые герберы (9 шт)"
-    "Белые герберы (9 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/43/1683622079_88645843.jpg",
-    # Карточка 106 - "Смешанные герберы (15 шт)"
-    "Смешанные герберы (15 шт)": "https://florrf.ru/uploads/origin/models/1140616.jpg",
-    # Карточка 105 - "Белые ромашки (20 шт)"
-    "Белые ромашки (20 шт)": "https://upload.wikimedia.org/wikipedia/commons/1/10/%D0%91%D0%B5%D0%BB%D1%8B%D0%B5_%D1%80%D0%BE%D0%BC%D0%B0%D1%88%D0%BA%D0%B8.jpg",
-    # Карточка 104 - "Белые ромашки (30 шт)"
-    "Белые ромашки (30 шт)": "https://img.goodfon.ru/original/7360x4912/3/8c/tsvety-romashki-belye-nivianik-mnogo-kust.jpg",
-    # Карточка 103 - "Белые ромашки (50 шт)"
-    "Белые ромашки (50 шт)": "https://i.pinimg.com/originals/8c/08/c4/8c08c42200fdd1c222cc0e69f2a5183b.jpg",
-    # Карточка 102 - "Ромашки с васильками (25 шт)"
-    "Ромашки с васильками (25 шт)": "https://dubabah.club/uploads/posts/2023-01/1673971051_dubabah-club-p-buket-iz-romashek-i-vasilkov-oboi-23.jpg",
-    # Карточка 101 - "Ромашки с васильками (40 шт)"
-    "Ромашки с васильками (40 шт)": "https://cs5.livemaster.ru/storage/63/4a/66a9aad5598aec5e9fff5223f6ox--kartiny-i-panno-kartina-maslom-tsvety-buket-s-romashkami-i-va.jpg",
-    # Карточка 100 - "Синие васильки (25 шт)"
-    "Синие васильки (25 шт)": "https://thumbs.dreamstime.com/b/%D1%84%D0%BE%D0%BD-%D0%B2%D0%B0%D1%81%D0%B8%D0%BB%D1%8C%D0%BA%D0%BE%D0%B2-%D1%86%D0%B2%D0%B5%D1%82%D1%8B-223534388.jpg",
-    # Карточка 99 - "Синие васильки (40 шт)"
-    "Синие васильки (40 шт)": "https://i.pinimg.com/originals/45/c0/e8/45c0e8082d478c96822983bb326a5188.jpg",
-    # Карточка 98 - "Васильки и ромашки (30 шт)"
-    "Васильки и ромашки (30 шт)": "https://masterpiecer-images.s3.yandex.net/c1f3128182fc11ee85d2d659965eed18:upscaled",
-    # Карточка 97 - "Васильки и ромашки (50 шт)"
-    "Васильки и ромашки (50 шт)": "https://prv1.lori-images.net/vasilki-v-forme-serdtsa-na-fone-romashek-0006168293-preview.jpg",
-    # Карточка 96 - "Красные тюльпаны (11 шт)"
-    "Красные тюльпаны (11 шт)": "https://img.freepik.com/free-photo/red-blooming-tulips-bouquet_23-2148409567.jpg?semt=ais_hybrid&w=740&q=80",
-    # Карточка 95 - "Красные тюльпаны (21 шт)"
-    "Красные тюльпаны (21 шт)": "https://i.pinimg.com/originals/c8/c8/ea/c8c8ea8da77d67574c70b30ba73859eb.jpg",
-    # Карточка 94 - "Желтые тюльпаны (11 шт)"
-    "Желтые тюльпаны (11 шт)": "https://i.pinimg.com/originals/34/a5/3f/34a53fcfaf51bab2ffce3ddc8b1f448c.jpg",
-    # Карточка 93 - "Желтые тюльпаны (21 шт)"
-    "Желтые тюльпаны (21 шт)": "https://i.pinimg.com/originals/81/8b/48/818b486d2419ac12eeee040058bfcafe.jpg",
-    # Карточка 92 - "Розовые тюльпаны (11 шт)"
-    "Розовые тюльпаны (11 шт)": "https://i.pinimg.com/236x/25/8d/52/258d52354f80a9bfe7004df11493b219.jpg?nii=t",
-    # Карточка 91 - "Розовые тюльпаны (21 шт)"
-    "Розовые тюльпаны (21 шт)": "https://abrakadabra.fun/uploads/posts/2021-11/1636804259_27-abrakadabra-fun-p-nezhnie-tyulpani-32.jpg",
-    # Карточка 90 - "Белые тюльпаны (11 шт)"
-    "Белые тюльпаны (11 шт)": "https://img.freepik.com/premium-photo/white-tulips-isolated-white-background_444198-1770.jpg?w=2000",
-    # Карточка 89 - "Фиолетовые тюльпаны (11 шт)"
-    "Фиолетовые тюльпаны (11 шт)": "https://i.pinimg.com/originals/ad/2e/d5/ad2ed52711679470752068709af42072.jpg",
-    # Добавим остальные по мере получения скриншотов
+# Маппинг изображений для цветов
+IMAGE_MAPPING = {
+    # Карточка 88 - "Смешанные тюльпаны (21 шт)"
+    "Смешанные тюльпаны (21 шт)": "https://de-de.bakker.com/cdn/shop/files/103718_4_1699628447656.jpg?v=1699628495",
 }
 
 
@@ -1332,19 +1227,12 @@ class FlowerParser:
                     f"⚠ Unsplash API ключ невалиден (401) для '{flower_name}'"
                 )
                 return None
-            elif response.status_code == 429:
-                # Rate limit исчерпан - используем fallback
-                logger.warning(
-                    f"⚠ Unsplash API rate limit исчерпан (429) для '{flower_name}'. "
-                    f"Используем fallback."
-                )
-                return self._get_fallback_image_url_for_flower(flower_name)
             elif response.status_code != 200:
                 logger.warning(
                     f"⚠ Unsplash API вернул статус {response.status_code} "
-                    f"для '{flower_name}'. Используем fallback."
+                    f"для '{flower_name}'"
                 )
-                return self._get_fallback_image_url_for_flower(flower_name)
+                return None
 
             data = response.json()
             if data.get("results") and len(data["results"]) > 0:
@@ -1830,41 +1718,6 @@ class FlowerParser:
         )
         return None
 
-    def _get_fallback_image_url_for_flower(self, flower_name):
-        """Fallback метод - возвращает статический URL изображения для цветка"""
-        # Используем хеш названия для выбора изображения из пула
-        flower_hash = int(
-            hashlib.md5(flower_name.encode("utf-8")).hexdigest()[:8], 16
-        )
-
-        # Пул статических URL изображений цветов
-        fallback_urls = [
-            "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/736230/pexels-photo-736230.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/1070535/pexels-photo-1070535.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/1408222/pexels-photo-1408222.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/1454286/pexels-photo-1454286.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/1608311/pexels-photo-1608311.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/169191/pexels-photo-169191.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/1793525/pexels-photo-1793525.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/2072167/pexels-photo-2072167.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/2072168/pexels-photo-2072168.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/2300713/pexels-photo-2300713.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/2300714/pexels-photo-2300714.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/2300715/pexels-photo-2300715.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/2300716/pexels-photo-2300716.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/2300717/pexels-photo-2300717.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/2300718/pexels-photo-2300718.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/2300720/pexels-photo-2300720.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ]
-
-        selected_url = fallback_urls[flower_hash % len(fallback_urls)]
-        logger.info(
-            f"✓ Использован fallback URL для '{flower_name}'"
-        )
-        return selected_url
-
     def _get_fallback_image_url(self, search_query):
         """Резервный метод - использует Unsplash Source API
         (без ключа) или прямые ссылки"""
@@ -2015,14 +1868,8 @@ class FlowerParser:
             return []
 
     def save_flowers(self, flowers_data):
-        """Сохраняет цветы в базу данных.
-        На продакшн (Render) использует image_url, на локально - файлы."""
-        import os
-
+        """КАК С СОБАКАМИ: Скачивает изображения по названию и сохраняет локально"""
         saved_count = 0
-        error_count = 0
-        # На Render используем URL, на локально - файлы
-        use_image_url = os.environ.get("DATABASE_URL") is not None
 
         for flower_data in flowers_data:
             try:
@@ -2031,53 +1878,22 @@ class FlowerParser:
                     name=flower_data["category"]
                 )
 
-                # ПРИОРИТЕТ 1: Проверяем маппинг (точное соответствие названия)
-                image_url = FLOWER_IMAGE_MAP.get(flower_data["name"])
-                if image_url:
-                    logger.info(
-                        f"✓ Использован маппинг для '{flower_data['name']}'"
-                    )
+                # Получаем URL изображения по названию цветка
+                # ПРИОРИТЕТ: Используем прямое русское название для точного маппинга
+                image_url = self._get_flower_image_url_by_name(flower_data["name"])
 
-                # ПРИОРИТЕТ 2: Если нет в маппинге, пробуем Unsplash API
+                # Если не нашли по русскому названию, пробуем через search_query
                 if not image_url:
-                    # Добавляем задержку для Unsplash API (чтобы не исчерпать rate limit)
-                    if use_image_url and unsplash_request_count > 0 and unsplash_request_count % 10 == 0:
-                        time.sleep(1)  # Задержка 1 секунда каждые 10 запросов
-
-                    image_url = self._get_flower_image_url_by_name(flower_data["name"])
-                    if image_url:
-                        unsplash_request_count += 1
-
-                    # Если не нашли по русскому названию, пробуем через search_query
-                    if not image_url:
-                        search_query = flower_data.get("search_query", flower_data["name"])
-                        image_url = self._get_working_image_url(
-                            flower_data["name"], search_query
-                        )
-                        if image_url:
-                            unsplash_request_count += 1
-
-                # ПРИОРИТЕТ 3: Если всё ещё нет image_url, используем fallback
-                if not image_url and use_image_url:
-                    image_url = self._get_fallback_image_url_for_flower(
-                        flower_data["name"]
-                    )
-
-                # Логируем результат получения изображения
-                if image_url:
-                    logger.info(
-                        f"✓ Получен image_url для '{flower_data['name']}': {image_url[:50]}..."
-                    )
-                else:
-                    logger.warning(
-                        f"⚠ image_url не получен для '{flower_data['name']}'"
+                    search_query = flower_data.get("search_query", flower_data["name"])
+                    image_url = self._get_working_image_url(
+                        flower_data["name"], search_query
                     )
 
                 image_file = None
 
-                # На продакшн (Render) не скачиваем файлы - используем только URL
-                # На локально скачиваем и сохраняем файлы
-                if image_url and not use_image_url:
+                # КАК С СОБАЧКАМИ: Скачиваем изображение и сохраняем локально
+                # ВАЖНО: Скачиваем ТОЛЬКО если URL найден и проверен
+                if image_url:
                     try:
                         # Пробуем скачать с текущего URL
                         response = requests.get(
@@ -2171,63 +1987,40 @@ class FlowerParser:
                         f"Будет использован placeholder."
                     )
 
-                # На Render используем image_url вместо сохранения файлов
-                # (ephemeral storage не сохраняет файлы)
-                use_image_url = os.environ.get("DATABASE_URL") is not None
-
-                # Обновляем или создаем запись о цветке
+                # Обновляем или создаем запись о цветке с локальным изображением
+                # (КАК С СОБАЧКАМИ)
+                # ВАЖНО: Не обновляем изображение, если оно уже есть
                 flower, created = Flower.objects.get_or_create(
                     name=flower_data["name"],
                     defaults={
                         "description": flower_data["description"],
                         "price": Decimal(str(flower_data["price"])),
                         "category": category,
-                        # На продакшн используем URL, на локально - файл
-                        "image": image_file if not use_image_url else None,
-                        "image_url": image_url if use_image_url else None,
+                        # Сохраняем локально (как с собачками), или None для placeholder
+                        "image": image_file,
+                        # НЕ сохраняем внешние URL (используем только локальные файлы)
+                        "image_url": None,
                         "in_stock": True,
                     },
                 )
 
-                # Обновляем цветок, если изображение получено или данные изменились
-                if not created:
-                    updated = False
-                    # На продакшн обновляем image_url, если он получен
-                    if use_image_url and image_url and flower.image_url != image_url:
-                        flower.image_url = image_url
-                        updated = True
-                    # На локально обновляем image, если он получен
-                    elif not use_image_url and image_file and not flower.image:
-                        flower.image = image_file
-                        updated = True
-                    # Обновляем другие поля, если они изменились
-                    if (
-                        flower.description != flower_data["description"]
-                        or flower.price != Decimal(str(flower_data["price"]))
-                        or flower.category != category
-                    ):
-                        flower.description = flower_data["description"]
-                        flower.price = Decimal(str(flower_data["price"]))
-                        flower.category = category
-                        flower.in_stock = True
-                        updated = True
-                    if updated:
-                        flower.save()
+                # Обновляем только если изображения нет, но мы его скачали
+                if not created and not flower.image and image_file:
+                    flower.image = image_file
+                    flower.description = flower_data["description"]
+                    flower.price = Decimal(str(flower_data["price"]))
+                    flower.category = category
+                    flower.in_stock = True
+                    flower.save()
                 saved_count += 1
                 action = "Создан" if created else "Обновлен"
                 logger.info(f"✓ {action} цветок: {flower_data['name']}")
 
             except Exception as e:
-                error_count += 1
-                logger.error(
-                    f"Ошибка при сохранении цветка '{flower_data.get('name', 'unknown')}': {str(e)}"
-                )
-                # Продолжаем парсинг даже при ошибках
+                logger.error(f"Ошибка при сохранении цветка: {str(e)}")
                 continue
 
         logger.info(f"Всего сохранено цветов: {saved_count}")
-        if error_count > 0:
-            logger.warning(f"Ошибок при сохранении: {error_count}")
 
 
 if __name__ == "__main__":
