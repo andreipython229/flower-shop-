@@ -15,6 +15,8 @@ logger = logging.getLogger(__name__)
 IMAGE_MAPPING = {
     # Карточка 88 - "Смешанные тюльпаны (21 шт)"
     "Смешанные тюльпаны (21 шт)": "https://de-de.bakker.com/cdn/shop/files/103718_4_1699628447656.jpg?v=1699628495",
+    # Карточка 87 - "Белые хризантемы (15 шт)"
+    "Белые хризантемы (15 шт)": "https://sun9-23.userapi.com/impg/fDdX-qJxGJDY85KIGxSr8qeott9GF4UB8jqx1Q/3YCbpk8NW-s.jpg?size=1050x789&quality=95&sign=79eff9ef0d244ab5717a745604af8c40&c_uniq_tag=Ht4PyS6M_O3YRZdBjkXdp7k4BRCiLixvaJcxMwfQGak&type=album",
 }
 
 
