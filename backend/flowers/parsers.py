@@ -83,6 +83,8 @@ FLOWER_IMAGE_MAP = {
     "Оранжевые герберы (15 шт)": "https://gor-cvety.ru/photos/8b1c41a4_c43bcf84.jpeg",
     # Карточка 107 - "Белые герберы (9 шт)"
     "Белые герберы (9 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/43/1683622079_88645843.jpg",
+    # Карточка 106 - "Смешанные герберы (15 шт)"
+    "Смешанные герберы (15 шт)": "https://florrf.ru/uploads/origin/models/1140616.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
