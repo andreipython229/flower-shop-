@@ -91,6 +91,8 @@ FLOWER_IMAGE_MAP = {
     "Белые ромашки (30 шт)": "https://img.goodfon.ru/original/7360x4912/3/8c/tsvety-romashki-belye-nivianik-mnogo-kust.jpg",
     # Карточка 103 - "Белые ромашки (50 шт)"
     "Белые ромашки (50 шт)": "https://i.pinimg.com/originals/8c/08/c4/8c08c42200fdd1c222cc0e69f2a5183b.jpg",
+    # Карточка 102 - "Ромашки с васильками (25 шт)"
+    "Ромашки с васильками (25 шт)": "https://dubabah.club/uploads/posts/2023-01/1673971051_dubabah-club-p-buket-iz-romashek-i-vasilkov-oboi-23.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
