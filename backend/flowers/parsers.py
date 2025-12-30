@@ -81,6 +81,8 @@ FLOWER_IMAGE_MAP = {
     "Оранжевые герберы (9 шт)": "https://cs1.livemaster.ru/storage/39/00/4648a0a40f6e6afd7fa7240a836v--sumki-i-aksessuary-sumka-malenkaya-gerbera.jpg",
     # Карточка 108 - "Оранжевые герберы (15 шт)"
     "Оранжевые герберы (15 шт)": "https://gor-cvety.ru/photos/8b1c41a4_c43bcf84.jpeg",
+    # Карточка 107 - "Белые герберы (9 шт)"
+    "Белые герберы (9 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/43/1683622079_88645843.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
