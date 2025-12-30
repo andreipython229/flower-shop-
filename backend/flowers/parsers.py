@@ -65,6 +65,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые гвоздики (15 шт)": "https://www.kalitecicek.com/Upload/sari-karanfiller.jpg",
     # Карточка 116 - "Смешанные гвоздики (25 шт)"
     "Смешанные гвоздики (25 шт)": "https://i.pinimg.com/originals/fe/c6/34/fec6348b9a0cafbe100bee989abd7f59.jpg",
+    # Карточка 115 - "Желтые герберы (9 шт)"
+    "Желтые герберы (9 шт)": "https://bolshoy-kamen.flowlove.ru/wp-content/themes/init/catalog/images/catalog/zheltyye-gerbery-medium.webp",
     # Добавим остальные по мере получения скриншотов
 }
 
