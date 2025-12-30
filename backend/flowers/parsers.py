@@ -85,6 +85,8 @@ FLOWER_IMAGE_MAP = {
     "Белые герберы (9 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/43/1683622079_88645843.jpg",
     # Карточка 106 - "Смешанные герберы (15 шт)"
     "Смешанные герберы (15 шт)": "https://florrf.ru/uploads/origin/models/1140616.jpg",
+    # Карточка 105 - "Белые ромашки (20 шт)"
+    "Белые ромашки (20 шт)": "https://upload.wikimedia.org/wikipedia/commons/1/10/%D0%91%D0%B5%D0%BB%D1%8B%D0%B5_%D1%80%D0%BE%D0%BC%D0%B0%D1%88%D0%BA%D0%B8.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
