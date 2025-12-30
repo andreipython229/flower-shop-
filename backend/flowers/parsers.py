@@ -107,6 +107,8 @@ FLOWER_IMAGE_MAP = {
     "Красные тюльпаны (11 шт)": "https://img.freepik.com/free-photo/red-blooming-tulips-bouquet_23-2148409567.jpg?semt=ais_hybrid&w=740&q=80",
     # Карточка 95 - "Красные тюльпаны (21 шт)"
     "Красные тюльпаны (21 шт)": "https://i.pinimg.com/originals/c8/c8/ea/c8c8ea8da77d67574c70b30ba73859eb.jpg",
+    # Карточка 94 - "Желтые тюльпаны (11 шт)"
+    "Желтые тюльпаны (11 шт)": "https://i.pinimg.com/originals/34/a5/3f/34a53fcfaf51bab2ffce3ddc8b1f448c.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
