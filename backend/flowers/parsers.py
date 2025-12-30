@@ -67,6 +67,8 @@ FLOWER_IMAGE_MAP = {
     "Смешанные гвоздики (25 шт)": "https://i.pinimg.com/originals/fe/c6/34/fec6348b9a0cafbe100bee989abd7f59.jpg",
     # Карточка 115 - "Желтые герберы (9 шт)"
     "Желтые герберы (9 шт)": "https://bolshoy-kamen.flowlove.ru/wp-content/themes/init/catalog/images/catalog/zheltyye-gerbery-medium.webp",
+    # Карточка 114 - "Желтые герберы (15 шт)"
+    "Желтые герберы (15 шт)": "https://png.pngtree.com/thumb_back/fh260/background/20240108/pngtree-gorgeous-texture-background-featuring-a-yellow-gerbera-daisy-image_13703868.png",
     # Добавим остальные по мере получения скриншотов
 }
 
