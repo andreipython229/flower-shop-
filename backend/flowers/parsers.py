@@ -12,7 +12,7 @@ from .models import Category, Flower
 logger = logging.getLogger(__name__)
 
 # Маппинг изображений для цветов
-IMAGE_MAPPING = {
+FLOWER_IMAGE_MAP = {
     # Карточка 88 - "Смешанные тюльпаны (21 шт)"
     "Смешанные тюльпаны (21 шт)": "https://de-de.bakker.com/cdn/shop/files/103718_4_1699628447656.jpg?v=1699628495",
     # Карточка 87 - "Белые хризантемы (15 шт)"
@@ -1160,10 +1160,10 @@ class FlowerParser:
         цветов по названию"""
         try:
             # Сначала проверяем маппинг изображений
-            if flower_name in IMAGE_MAPPING:
-                image_url = IMAGE_MAPPING[flower_name]
+            if flower_name in FLOWER_IMAGE_MAP:
+                image_url = FLOWER_IMAGE_MAP[flower_name]
                 logger.info(
-                    f"✓ Найдено изображение в IMAGE_MAPPING для '{flower_name}'"
+                    f"✓ Найдено изображение в FLOWER_IMAGE_MAP для '{flower_name}'"
                 )
                 return image_url
             
