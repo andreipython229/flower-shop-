@@ -101,6 +101,8 @@ FLOWER_IMAGE_MAP = {
     "Синие васильки (40 шт)": "https://i.pinimg.com/originals/45/c0/e8/45c0e8082d478c96822983bb326a5188.jpg",
     # Карточка 98 - "Васильки и ромашки (30 шт)"
     "Васильки и ромашки (30 шт)": "https://masterpiecer-images.s3.yandex.net/c1f3128182fc11ee85d2d659965eed18:upscaled",
+    # Карточка 97 - "Васильки и ромашки (50 шт)"
+    "Васильки и ромашки (50 шт)": "https://prv1.lori-images.net/vasilki-v-forme-serdtsa-na-fone-romashek-0006168293-preview.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
