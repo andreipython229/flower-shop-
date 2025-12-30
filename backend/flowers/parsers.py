@@ -17,6 +17,8 @@ FLOWER_IMAGE_MAP = {
     "Смешанные тюльпаны (21 шт)": "https://de-de.bakker.com/cdn/shop/files/103718_4_1699628447656.jpg?v=1699628495",
     # Карточка 87 - "Белые хризантемы (15 шт)"
     "Белые хризантемы (15 шт)": "https://sun9-23.userapi.com/impg/fDdX-qJxGJDY85KIGxSr8qeott9GF4UB8jqx1Q/3YCbpk8NW-s.jpg?size=1050x789&quality=95&sign=79eff9ef0d244ab5717a745604af8c40&c_uniq_tag=Ht4PyS6M_O3YRZdBjkXdp7k4BRCiLixvaJcxMwfQGak&type=album",
+    # Карточка 86 - "Белые хризантемы (25 шт)"
+    "Белые хризантемы (25 шт)": "https://avatars.mds.yandex.net/get-mpic/6253235/img_id1340511525181106758.jpeg/orig",
 }
 
 
