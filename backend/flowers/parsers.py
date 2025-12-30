@@ -73,6 +73,8 @@ FLOWER_IMAGE_MAP = {
     "Красные герберы (9 шт)": "https://bazacvetov24.ru/products/7717/buket-iveyn-bm8-dop_7567_lg.jpg",
     # Карточка 112 - "Красные герберы (15 шт)"
     "Красные герберы (15 шт)": "https://gor-cvety.ru/photos/568ede1d_3111b215.jpeg",
+    # Карточка 111 - "Розовые герберы (9 шт)"
+    "Розовые герберы (9 шт)": "https://ir.ozone.ru/s3/multimedia-u/6391846242.jpg",
     # Добавим остальные по мере получения скриншотов
 }
 
