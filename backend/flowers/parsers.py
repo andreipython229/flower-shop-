@@ -25,6 +25,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые хризантемы (25 шт)": "https://img.goodfon.ru/original/4032x3024/3/a9/tsvety-khrizantemy-zheltye-mnogo.jpg",
     # Карточка 83 - "Розовые хризантемы (15 шт)"
     "Розовые хризантемы (15 шт)": "https://i.pinimg.com/originals/cd/fd/87/cdfd87fc7873fac1473b560dc80b69b3.jpg",
+    # Карточка 82 - "Красные хризантемы (15 шт)"
+    "Красные хризантемы (15 шт)": "https://jooinn.com/images/red-mums-15.jpg",
 }
 
 
