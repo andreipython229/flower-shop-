@@ -79,6 +79,8 @@ FLOWER_IMAGE_MAP = {
     'Смешанный букет "Летний"': "https://cdn-sh1.vigbo.com/shops/8721/products/22360915/images/3-34a3a9b2c71a79eae7c21aa9d6363bbf.jpeg",
     # Карточка 56 - 'Смешанный букет "Осенний"'
     'Смешанный букет "Осенний"': "https://cs2.livemaster.ru/storage/1c/54/60990019fb30a247f06ac8d371fi--tsvety-i-floristika-modnyj-osennij-buket-iz-stabilizirovannyh.jpg",
+    # Карточка 55 - "Свадебный букет"
+    "Свадебный букет": "https://i.pinimg.com/originals/35/ad/a5/35ada5ebbab3393911ec276810707dd0.png?nii=t",
 }
 
 
