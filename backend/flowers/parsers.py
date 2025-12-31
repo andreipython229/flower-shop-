@@ -135,6 +135,8 @@ FLOWER_IMAGE_MAP = {
     "Красные розы (15 шт)": "https://aflo.ru/upload/cssinliner_webp/iblock/59c/qqq21jng6w6fro1o3ambtmjhwr3wepp5/buket_iz_15_krasnykh_roz.webp",
     # Карточка 28 - "Белые розы (15 шт)"
     "Белые розы (15 шт)": "https://ir.ozone.ru/s3/multimedia-g/6235089376.jpg",
+    # Карточка 27 - "Розовые розы (15 шт)"
+    "Розовые розы (15 шт)": "https://avatars.mds.yandex.net/get-mpic/15034155/2a00000198a3ab2892f9d46c0857c7e253e3/orig",
 }
 
 
