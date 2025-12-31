@@ -173,6 +173,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые лилии (9 шт)": "https://content2.flowwow-images.com/data/flowers/524x524/47/1745413810_18360847.jpg",
     # Карточка 9 - "Синие ирисы (20 шт)"
     "Синие ирисы (20 шт)": "https://avatars.mds.yandex.net/get-mpic/1927699/img_id6611188219770622790.jpeg/orig",
+    # Карточка 8 - "Фиолетовые ирисы (20 шт)"
+    "Фиолетовые ирисы (20 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/197/680/644/551/410/22/100068315126b0.jpg",
 }
 
 
