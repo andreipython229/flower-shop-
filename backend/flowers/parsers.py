@@ -149,6 +149,8 @@ FLOWER_IMAGE_MAP = {
     "Красные гвоздики (30 шт)": "https://divaflora.ru/upload/iblock/734/7341c337064f940b2ecaa98f1bb20932.jpg",
     # Карточка 21 - "Розовые гвоздики (30 шт)"
     "Розовые гвоздики (30 шт)": "https://avatars.mds.yandex.net/get-eda/15135287/0c3f8ff153724f522028e632546779fa/orig",
+    # Карточка 20 - "Белые гвоздики (30 шт)"
+    "Белые гвоздики (30 шт)": "https://avatars.mds.yandex.net/get-mpic/5220597/img_id5833008973735315784.jpeg/orig",
 }
 
 
