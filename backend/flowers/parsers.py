@@ -31,6 +31,8 @@ FLOWER_IMAGE_MAP = {
     "Оранжевые хризантемы (15 шт)": "https://rare-gallery.com/uploads/posts/839788-Chrysanthemums-Closeup-Orange-Flower-bud.jpg",
     # Карточка 80 - "Розовые пионы (5 шт)"
     "Розовые пионы (5 шт)": "https://i.pinimg.com/originals/cd/63/93/cd639376b4c952335e86eb22a72aa420.png?nii=t",
+    # Карточка 79 - "Розовые пионы (9 шт)"
+    "Розовые пионы (9 шт)": "https://pixel-shot.com/get_image/i-3349133-0.JPG",
 }
 
 
