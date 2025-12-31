@@ -41,6 +41,8 @@ FLOWER_IMAGE_MAP = {
     "Бордовые пионы (5 шт)": "https://kartinki.pics/pics/uploads/posts/2022-07/1658589092_50-kartinkin-net-p-krasnie-pioni-tsveti-krasivo-foto-54.jpg",
     # Карточка 75 - "Белые лилии (3 шт)"
     "Белые лилии (3 шт)": "https://img.freepik.com/premium-photo/close-up-white-lily-flowers-grey-background_1048944-28096711.jpg?semt=ais_country_boost&w=740",
+    # Карточка 74 - "Белые лилии (5 шт)"
+    "Белые лилии (5 шт)": "https://i.pinimg.com/originals/eb/04/a5/eb04a581b9a6ab781c7ba0a3ff1b51f0.jpg?nii=t",
 }
 
 
