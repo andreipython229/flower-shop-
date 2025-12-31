@@ -181,6 +181,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые орхидеи (5 шт)": "https://www.annetflowers.com.ua/image/cache/catalog/svety%20v%20korobke/shlyapnaya-korobka-s-rozovyimi-orhideyami-liliana-800x800.jpeg",
     # Карточка 5 - "Розовые альстромерии (25 шт)"
     "Розовые альстромерии (25 шт)": "https://ir.ozone.ru/s3/multimedia-1-4/7171337236.jpg",
+    # Карточка 4 - "Желтые альстромерии (25 шт)"
+    "Желтые альстромерии (25 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/-12/047/524/524/181/856/100067690726b0.jpg",
 }
 
 
