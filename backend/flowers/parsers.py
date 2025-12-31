@@ -43,6 +43,8 @@ FLOWER_IMAGE_MAP = {
     "Белые лилии (3 шт)": "https://img.freepik.com/premium-photo/close-up-white-lily-flowers-grey-background_1048944-28096711.jpg?semt=ais_country_boost&w=740",
     # Карточка 74 - "Белые лилии (5 шт)"
     "Белые лилии (5 шт)": "https://i.pinimg.com/originals/eb/04/a5/eb04a581b9a6ab781c7ba0a3ff1b51f0.jpg?nii=t",
+    # Карточка 73 - "Белые лилии (7 шт)"
+    "Белые лилии (7 шт)": "https://i.pinimg.com/originals/c4/2c/a1/c42ca17075a61fc715703eab3d20a850.jpg",
 }
 
 
