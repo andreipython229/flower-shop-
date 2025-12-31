@@ -145,6 +145,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые тюльпаны (15 шт)": "https://main-cdn.sbermegamarket.ru/big2/hlr-system/167/790/404/172/614/43/100066869117b0.jpg",
     # Карточка 23 - "Розовые тюльпаны (15 шт)"
     "Розовые тюльпаны (15 шт)": "https://avatars.mds.yandex.net/get-mpic/1522540/img_id6414687787063019052.jpeg/orig",
+    # Карточка 22 - "Красные гвоздики (30 шт)"
+    "Красные гвоздики (30 шт)": "https://divaflora.ru/upload/iblock/734/7341c337064f940b2ecaa98f1bb20932.jpg",
 }
 
 
