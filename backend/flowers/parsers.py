@@ -81,6 +81,8 @@ FLOWER_IMAGE_MAP = {
     'Смешанный букет "Осенний"': "https://cs2.livemaster.ru/storage/1c/54/60990019fb30a247f06ac8d371fi--tsvety-i-floristika-modnyj-osennij-buket-iz-stabilizirovannyh.jpg",
     # Карточка 55 - "Свадебный букет"
     "Свадебный букет": "https://i.pinimg.com/originals/35/ad/a5/35ada5ebbab3393911ec276810707dd0.png?nii=t",
+    # Карточка 54 - "Букет невесты"
+    "Букет невесты": "https://i.pinimg.com/originals/1b/c9/f2/1bc9f2c4ec5ff79cd71131c7560d3f4f.jpg",
 }
 
 
