@@ -163,6 +163,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые хризантемы (30 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/-12/027/247/424/181/90/100067690988b0.jpg",
     # Карточка 14 - "Розовые хризантемы (30 шт)"
     "Розовые хризантемы (30 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/-13/220/844/655/291/60/100068536305b0.jpg",
+    # Карточка 13 - "Розовые пионы (7 шт)"
+    "Розовые пионы (7 шт)": "https://avatars.mds.yandex.net/get-mpic/7888310/img_id2960286590061411162.jpeg/orig",
 }
 
 
