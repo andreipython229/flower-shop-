@@ -73,6 +73,8 @@ FLOWER_IMAGE_MAP = {
     'Смешанный букет "Полевой" (средний)': "https://beautpic.klev.club/uploads/posts/2025-05/1385/bukety_polevyh_tsvetov_84_4ac268ed.jpg",
     # Карточка 59 - 'Смешанный букет "Полевой" (большой)'
     'Смешанный букет "Полевой" (большой)': "https://moldflowers.md/images/uploads/products/2025-05-13/buchet-din-flori-romanite-si-mathiola-3-moldflowers-god4c-fitu-wX-644-hX-488.md-god4c-fitu-wX-644-hX-488.jpg",
+    # Карточка 58 - 'Смешанный букет "Весенний"'
+    'Смешанный букет "Весенний"': "https://buketite.net/wp-content/uploads/2024/03/Screenshot_20240324_174722_Google.jpg",
 }
 
 
