@@ -115,6 +115,8 @@ FLOWER_IMAGE_MAP = {
     "Белые астры (20 шт)": "https://www.stars-plant.nl/wp-content/uploads/2020/08/Callistephus-Bonita-White-Stars-plant.jpg",
     # Карточка 38 - "Розовые астры (20 шт)"
     "Розовые астры (20 шт)": "https://seedspost.ru/upload/resize_cache/iblock/1a6/537_240_2/fa93c23f_d006_11e1_b4e9_3c4a92d5c739_7a9a21dc_3d06_11ed_af06_00155de0f501.jpeg",
+    # Карточка 37 - "Фиолетовые астры (20 шт)"
+    "Фиолетовые астры (20 шт)": "https://basket-26.wbbasket.ru/vol4788/part478807/478807550/images/big/1.webp",
 }
 
 
