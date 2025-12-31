@@ -71,6 +71,8 @@ FLOWER_IMAGE_MAP = {
     'Смешанный букет "Романтика" (большой)': "https://storage.florist.ru/f/get/supplier/111/products/10388/73/76/_ee4df5338da85a61efe132f4756e/683815c49d264.jpg",
     # Карточка 60 - 'Смешанный букет "Полевой" (средний)'
     'Смешанный букет "Полевой" (средний)': "https://beautpic.klev.club/uploads/posts/2025-05/1385/bukety_polevyh_tsvetov_84_4ac268ed.jpg",
+    # Карточка 59 - 'Смешанный букет "Полевой" (большой)'
+    'Смешанный букет "Полевой" (большой)': "https://moldflowers.md/images/uploads/products/2025-05-13/buchet-din-flori-romanite-si-mathiola-3-moldflowers-god4c-fitu-wX-644-hX-488.md-god4c-fitu-wX-644-hX-488.jpg",
 }
 
 
