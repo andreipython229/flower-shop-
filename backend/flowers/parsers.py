@@ -69,6 +69,8 @@ FLOWER_IMAGE_MAP = {
     'Смешанный букет "Романтика" (средний)': "https://static.tildacdn.com/tild6366-3536-4964-b737-666166366638/doPbfgxT_kg.jpg",
     # Карточка 61 - 'Смешанный букет "Романтика" (большой)'
     'Смешанный букет "Романтика" (большой)': "https://storage.florist.ru/f/get/supplier/111/products/10388/73/76/_ee4df5338da85a61efe132f4756e/683815c49d264.jpg",
+    # Карточка 60 - 'Смешанный букет "Полевой" (средний)'
+    'Смешанный букет "Полевой" (средний)': "https://beautpic.klev.club/uploads/posts/2025-05/1385/bukety_polevyh_tsvetov_84_4ac268ed.jpg",
 }
 
 
