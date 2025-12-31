@@ -37,6 +37,8 @@ FLOWER_IMAGE_MAP = {
     "Белые пионы (5 шт)": "https://img.freepik.com/premium-photo/white-peonies-white-vase-photo-realistic-bouquet-flowers_312400-177.jpg",
     # Карточка 77 - "Белые пионы (9 шт)"
     "Белые пионы (9 шт)": "https://i.pinimg.com/736x/4e/76/02/4e76025de1e059d6ffbd7acc2b1fb3ea.jpg",
+    # Карточка 76 - "Бордовые пионы (5 шт)"
+    "Бордовые пионы (5 шт)": "https://kartinki.pics/pics/uploads/posts/2022-07/1658589092_50-kartinkin-net-p-krasnie-pioni-tsveti-krasivo-foto-54.jpg",
 }
 
 
