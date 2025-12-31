@@ -125,6 +125,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые гладиолусы (7 шт)": "https://avatars.mds.yandex.net/get-mpic/932277/img_id744274101160576383.jpeg/orig",
     # Карточка 33 - "Белые эустомы (9 шт)"
     "Белые эустомы (9 шт)": "https://avatars.mds.yandex.net/get-mpic/16439402/2a00000199433c3b83f163a4d6989c170e87/orig",
+    # Карточка 32 - "Розовые эустомы (9 шт)"
+    "Розовые эустомы (9 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/-19/612/393/541/311/852/100064414453b0.jpg",
 }
 
 
