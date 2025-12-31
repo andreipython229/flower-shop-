@@ -33,6 +33,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые пионы (5 шт)": "https://i.pinimg.com/originals/cd/63/93/cd639376b4c952335e86eb22a72aa420.png?nii=t",
     # Карточка 79 - "Розовые пионы (9 шт)"
     "Розовые пионы (9 шт)": "https://pixel-shot.com/get_image/i-3349133-0.JPG",
+    # Карточка 78 - "Белые пионы (5 шт)"
+    "Белые пионы (5 шт)": "https://img.freepik.com/premium-photo/white-peonies-white-vase-photo-realistic-bouquet-flowers_312400-177.jpg",
 }
 
 
