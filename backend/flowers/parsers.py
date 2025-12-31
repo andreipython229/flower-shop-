@@ -175,6 +175,8 @@ FLOWER_IMAGE_MAP = {
     "Синие ирисы (20 шт)": "https://avatars.mds.yandex.net/get-mpic/1927699/img_id6611188219770622790.jpeg/orig",
     # Карточка 8 - "Фиолетовые ирисы (20 шт)"
     "Фиолетовые ирисы (20 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/197/680/644/551/410/22/100068315126b0.jpg",
+    # Карточка 7 - "Белые орхидеи (5 шт)"
+    "Белые орхидеи (5 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/14/1738387010_38646014.jpg",
 }
 
 
