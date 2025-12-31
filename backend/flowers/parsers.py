@@ -63,6 +63,8 @@ FLOWER_IMAGE_MAP = {
     "Фиолетовые ирисы (15 шт)": "https://i.pinimg.com/originals/78/9f/70/789f704d042f43bc62fb01d725cf2872.png",
     # Карточка 64 - "Желтые ирисы (9 шт)"
     "Желтые ирисы (9 шт)": "https://i.pinimg.com/originals/a1/15/6f/a1156fa9c1e2aa51b739270105e56fba.jpg",
+    # Карточка 63 - "Белые ирисы (9 шт)"
+    "Белые ирисы (9 шт)": "https://static.tildacdn.com/stor6263-3863-4835-a465-346233643561/57023225.jpg",
 }
 
 
