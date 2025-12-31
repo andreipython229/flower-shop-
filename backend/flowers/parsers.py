@@ -109,6 +109,8 @@ FLOWER_IMAGE_MAP = {
     "Белые фрезии (15 шт)": "https://kartin.papik.pro/uploads/posts/2023-06/1687197574_kartin-papik-pro-p-kartinki-frezii-tsveti-krasivie-53.jpg",
     # Карточка 41 - "Желтые фрезии (15 шт)"
     "Желтые фрезии (15 шт)": "https://stihi.ru/pics/2013/02/23/6419.jpg",
+    # Карточка 40 - "Розовые фрезии (15 шт)"
+    "Розовые фрезии (15 шт)": "https://xn----ctbeg4axpf7a5c9ac.xn--p1ai/images/prev/3b139c4023f3088a1f62913d624afe14_s1000x0.png",
 }
 
 
