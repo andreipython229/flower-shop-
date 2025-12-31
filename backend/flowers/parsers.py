@@ -187,6 +187,8 @@ FLOWER_IMAGE_MAP = {
     "Белые фрезии (25 шт)": "https://ir.ozone.ru/s3/multimedia-1-i/7647495138.jpg",
     # Карточка 2 - "Красные розы (35 шт)"
     "Красные розы (35 шт)": "https://basket-19.wbbasket.ru/vol3116/part311657/311657129/images/big/1.webp",
+    # Карточка 1 - "Белые розы (35 шт)"
+    "Белые розы (35 шт)": "https://cdn1.ozone.ru/s3/multimedia-1-2/7255722710.jpg",
 }
 
 
