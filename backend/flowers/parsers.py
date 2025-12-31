@@ -53,6 +53,8 @@ FLOWER_IMAGE_MAP = {
     "Оранжевые лилии (3 шт)": "https://c8.alamy.com/comp/2GKHWAB/bouquet-of-orange-asiatic-lilies-on-yellow-background-2GKHWAB.jpg",
     # Карточка 69 - "Желтые лилии (3 шт)"
     "Желтые лилии (3 шт)": "https://c8.alamy.com/comp/F2J4HH/bee-on-a-flower-decorative-plant-flower-july-lilies-lilies-yellow-F2J4HH.jpg",
+    # Карточка 68 - "Синие ирисы (9 шт)"
+    "Синие ирисы (9 шт)": "https://photopole.ru/wp-content/uploads/iris-goluboi-kasatik-3.webp",
 }
 
 
