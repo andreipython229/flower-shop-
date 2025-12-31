@@ -59,6 +59,8 @@ FLOWER_IMAGE_MAP = {
     "Синие ирисы (15 шт)": "https://img.freepik.com/premium-photo/full-frame-shot-purple-flowers_1048944-3729275.jpg?semt=ais_hybrid&w=740",
     # Карточка 66 - "Фиолетовые ирисы (9 шт)"
     "Фиолетовые ирисы (9 шт)": "https://i2.wp.com/icolorpalette.com/download/collage/205793_flower_purple_plant_icolorpalette.png?crop=0,0,100,90",
+    # Карточка 65 - "Фиолетовые ирисы (15 шт)"
+    "Фиолетовые ирисы (15 шт)": "https://i.pinimg.com/originals/78/9f/70/789f704d042f43bc62fb01d725cf2872.png",
 }
 
 
