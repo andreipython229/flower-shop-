@@ -179,6 +179,8 @@ FLOWER_IMAGE_MAP = {
     "Белые орхидеи (5 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/14/1738387010_38646014.jpg",
     # Карточка 6 - "Розовые орхидеи (5 шт)"
     "Розовые орхидеи (5 шт)": "https://www.annetflowers.com.ua/image/cache/catalog/svety%20v%20korobke/shlyapnaya-korobka-s-rozovyimi-orhideyami-liliana-800x800.jpeg",
+    # Карточка 5 - "Розовые альстромерии (25 шт)"
+    "Розовые альстромерии (25 шт)": "https://ir.ozone.ru/s3/multimedia-1-4/7171337236.jpg",
 }
 
 
