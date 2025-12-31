@@ -177,6 +177,8 @@ FLOWER_IMAGE_MAP = {
     "Фиолетовые ирисы (20 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/197/680/644/551/410/22/100068315126b0.jpg",
     # Карточка 7 - "Белые орхидеи (5 шт)"
     "Белые орхидеи (5 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/14/1738387010_38646014.jpg",
+    # Карточка 6 - "Розовые орхидеи (5 шт)"
+    "Розовые орхидеи (5 шт)": "https://www.annetflowers.com.ua/image/cache/catalog/svety%20v%20korobke/shlyapnaya-korobka-s-rozovyimi-orhideyami-liliana-800x800.jpeg",
 }
 
 
