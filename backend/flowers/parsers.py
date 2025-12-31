@@ -139,6 +139,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые розы (15 шт)": "https://avatars.mds.yandex.net/get-mpic/15034155/2a00000198a3ab2892f9d46c0857c7e253e3/orig",
     # Карточка 26 - "Желтые розы (15 шт)"
     "Желтые розы (15 шт)": "https://florico.ru/upload/webp/90/upload/iblock/79d/79d650e1f6933868f19fdac9f2aefd4f.png.webp",
+    # Карточка 25 - "Красные тюльпаны (15 шт)"
+    "Красные тюльпаны (15 шт)": "https://avatars.mds.yandex.net/get-mpic/4397502/2a00000195667226dbc269010f5fbf9cd8a5/orig",
 }
 
 
