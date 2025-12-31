@@ -27,6 +27,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые хризантемы (15 шт)": "https://i.pinimg.com/originals/cd/fd/87/cdfd87fc7873fac1473b560dc80b69b3.jpg",
     # Карточка 82 - "Красные хризантемы (15 шт)"
     "Красные хризантемы (15 шт)": "https://jooinn.com/images/red-mums-15.jpg",
+    # Карточка 81 - "Оранжевые хризантемы (15 шт)"
+    "Оранжевые хризантемы (15 шт)": "https://rare-gallery.com/uploads/posts/839788-Chrysanthemums-Closeup-Orange-Flower-bud.jpg",
 }
 
 
