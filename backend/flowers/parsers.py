@@ -127,6 +127,8 @@ FLOWER_IMAGE_MAP = {
     "Белые эустомы (9 шт)": "https://avatars.mds.yandex.net/get-mpic/16439402/2a00000199433c3b83f163a4d6989c170e87/orig",
     # Карточка 32 - "Розовые эустомы (9 шт)"
     "Розовые эустомы (9 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/-19/612/393/541/311/852/100064414453b0.jpg",
+    # Карточка 31 - "Фиолетовые эустомы (9 шт)"
+    "Фиолетовые эустомы (9 шт)": "https://main-cdn.sbermegamarket.ru/big2/hlr-system/-17/835/004/859/131/721/100070802780b0.jpg",
 }
 
 
