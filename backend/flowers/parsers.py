@@ -83,6 +83,8 @@ FLOWER_IMAGE_MAP = {
     "Свадебный букет": "https://i.pinimg.com/originals/35/ad/a5/35ada5ebbab3393911ec276810707dd0.png?nii=t",
     # Карточка 54 - "Букет невесты"
     "Букет невесты": "https://i.pinimg.com/originals/1b/c9/f2/1bc9f2c4ec5ff79cd71131c7560d3f4f.jpg",
+    # Карточка 53 - 'Смешанный букет "Премиум"'
+    'Смешанный букет "Премиум"': "https://lovelybuket.ru/wp-content/webp-express/webp-images/uploads/2025/02/f562ed36-5e24-4b87-a038-5e7169ae1c7c.jpeg.webp",
 }
 
 
