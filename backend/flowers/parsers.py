@@ -107,6 +107,8 @@ FLOWER_IMAGE_MAP = {
     "Белые альстромерии (15 шт)": "https://365ng.ru/upload/iblock/dbc/dbca3af8499231ff7d9120c711756e11.jpg",
     # Карточка 42 - "Белые фрезии (15 шт)"
     "Белые фрезии (15 шт)": "https://kartin.papik.pro/uploads/posts/2023-06/1687197574_kartin-papik-pro-p-kartinki-frezii-tsveti-krasivie-53.jpg",
+    # Карточка 41 - "Желтые фрезии (15 шт)"
+    "Желтые фрезии (15 шт)": "https://stihi.ru/pics/2013/02/23/6419.jpg",
 }
 
 
