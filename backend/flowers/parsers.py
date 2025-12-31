@@ -153,6 +153,8 @@ FLOWER_IMAGE_MAP = {
     "Белые гвоздики (30 шт)": "https://avatars.mds.yandex.net/get-mpic/5220597/img_id5833008973735315784.jpeg/orig",
     # Карточка 19 - "Желтые герберы (21 шт)"
     "Желтые герберы (21 шт)": "https://sergiev-posad.florist-express.ru/published/publicdata/FLORA/attachments/SC/products_pictures/10_enl.jpeg",
+    # Карточка 18 - "Красные герберы (21 шт)"
+    "Красные герберы (21 шт)": "https://magicalflower.ru/image/catalog/feb25/111/333/img8521.jpg",
 }
 
 
