@@ -185,6 +185,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые альстромерии (25 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/-12/047/524/524/181/856/100067690726b0.jpg",
     # Карточка 3 - "Белые фрезии (25 шт)"
     "Белые фрезии (25 шт)": "https://ir.ozone.ru/s3/multimedia-1-i/7647495138.jpg",
+    # Карточка 2 - "Красные розы (35 шт)"
+    "Красные розы (35 шт)": "https://basket-19.wbbasket.ru/vol3116/part311657/311657129/images/big/1.webp",
 }
 
 
