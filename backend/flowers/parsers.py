@@ -129,6 +129,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые эустомы (9 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/-19/612/393/541/311/852/100064414453b0.jpg",
     # Карточка 31 - "Фиолетовые эустомы (9 шт)"
     "Фиолетовые эустомы (9 шт)": "https://main-cdn.sbermegamarket.ru/big2/hlr-system/-17/835/004/859/131/721/100070802780b0.jpg",
+    # Карточка 30 - "Синие эустомы (9 шт)"
+    "Синие эустомы (9 шт)": "https://kashira.dostavka-cvetov1001.ru/wp-content/uploads/2023/11/1687799508_74512905.jpg",
 }
 
 
