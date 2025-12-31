@@ -77,6 +77,8 @@ FLOWER_IMAGE_MAP = {
     'Смешанный букет "Весенний"': "https://buketite.net/wp-content/uploads/2024/03/Screenshot_20240324_174722_Google.jpg",
     # Карточка 57 - 'Смешанный букет "Летний"'
     'Смешанный букет "Летний"': "https://cdn-sh1.vigbo.com/shops/8721/products/22360915/images/3-34a3a9b2c71a79eae7c21aa9d6363bbf.jpeg",
+    # Карточка 56 - 'Смешанный букет "Осенний"'
+    'Смешанный букет "Осенний"': "https://cs2.livemaster.ru/storage/1c/54/60990019fb30a247f06ac8d371fi--tsvety-i-floristika-modnyj-osennij-buket-iz-stabilizirovannyh.jpg",
 }
 
 
