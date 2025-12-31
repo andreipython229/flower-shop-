@@ -155,6 +155,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые герберы (21 шт)": "https://sergiev-posad.florist-express.ru/published/publicdata/FLORA/attachments/SC/products_pictures/10_enl.jpeg",
     # Карточка 18 - "Красные герберы (21 шт)"
     "Красные герберы (21 шт)": "https://magicalflower.ru/image/catalog/feb25/111/333/img8521.jpg",
+    # Карточка 17 - "Розовые герберы (21 шт)"
+    "Розовые герберы (21 шт)": "https://basket-27.wbbasket.ru/vol4948/part494847/494847641/images/big/1.webp",
 }
 
 
