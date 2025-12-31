@@ -21,6 +21,8 @@ FLOWER_IMAGE_MAP = {
     "Белые хризантемы (25 шт)": "https://avatars.mds.yandex.net/get-mpic/6253235/img_id1340511525181106758.jpeg/orig",
     # Карточка 85 - "Желтые хризантемы (15 шт)"
     "Желтые хризантемы (15 шт)": "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX2214727.jpg",
+    # Карточка 84 - "Желтые хризантемы (25 шт)"
+    "Желтые хризантемы (25 шт)": "https://img.goodfon.ru/original/4032x3024/3/a9/tsvety-khrizantemy-zheltye-mnogo.jpg",
 }
 
 
