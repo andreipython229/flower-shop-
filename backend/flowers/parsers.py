@@ -89,6 +89,8 @@ FLOWER_IMAGE_MAP = {
     'Смешанный букет "Классика"': "https://img.freepik.com/premium-photo/close-up-pink-rose-bouquet_1048944-23538004.jpg?semt=ais_hybrid&w=740&q=80",
     # Карточка 51 - 'Смешанный букет "Эксклюзив"'
     'Смешанный букет "Эксклюзив"': "https://bar-flowers.ru/image/cache/data/svoi/%20%D1%81%20%D0%B3%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D0%B5%D0%B9-750x810.jpg",
+    # Карточка 50 - "Белые орхидеи (3 шт)"
+    "Белые орхидеи (3 шт)": "https://i.pinimg.com/originals/ef/f6/80/eff680c33249e9efb1b790d02fb2cdd0.jpg",
 }
 
 
