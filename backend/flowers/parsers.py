@@ -93,6 +93,8 @@ FLOWER_IMAGE_MAP = {
     "Белые орхидеи (3 шт)": "https://i.pinimg.com/originals/ef/f6/80/eff680c33249e9efb1b790d02fb2cdd0.jpg",
     # Карточка 49 - "Розовые орхидеи (3 шт)"
     "Розовые орхидеи (3 шт)": "https://i.pinimg.com/736x/85/6e/23/856e23c45e64571e0429638ba60d613d.jpg",
+    # Карточка 48 - "Фиолетовые орхидеи (3 шт)"
+    "Фиолетовые орхидеи (3 шт)": "https://balthazar.club/uploads/posts/2023-09/1694996083_balthazar-club-p-komnatnie-tsveti-fioletovogo-tsveta-instag-48.jpg",
 }
 
 
