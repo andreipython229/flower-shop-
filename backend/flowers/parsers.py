@@ -101,6 +101,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые альстромерии (15 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/17/1664917063_12880617.jpg",
     # Карточка 45 - "Желтые альстромерии (15 шт)"
     "Желтые альстромерии (15 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/184/245/422/782/111/51/600020361627b0.jpg",
+    # Карточка 44 - "Оранжевые альстромерии (15 шт)"
+    "Оранжевые альстромерии (15 шт)": "https://anguor.com/wp-content/uploads/2023/08/11.webp",
 }
 
 
