@@ -75,6 +75,8 @@ FLOWER_IMAGE_MAP = {
     'Смешанный букет "Полевой" (большой)': "https://moldflowers.md/images/uploads/products/2025-05-13/buchet-din-flori-romanite-si-mathiola-3-moldflowers-god4c-fitu-wX-644-hX-488.md-god4c-fitu-wX-644-hX-488.jpg",
     # Карточка 58 - 'Смешанный букет "Весенний"'
     'Смешанный букет "Весенний"': "https://buketite.net/wp-content/uploads/2024/03/Screenshot_20240324_174722_Google.jpg",
+    # Карточка 57 - 'Смешанный букет "Летний"'
+    'Смешанный букет "Летний"': "https://cdn-sh1.vigbo.com/shops/8721/products/22360915/images/3-34a3a9b2c71a79eae7c21aa9d6363bbf.jpeg",
 }
 
 
