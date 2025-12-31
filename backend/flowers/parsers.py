@@ -99,6 +99,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые орхидеи (3 шт)": "https://masterpiecer-images.s3.yandex.net/3dd9ccf2b02d11ee85d212e9024ad7c8:upscaled",
     # Карточка 46 - "Розовые альстромерии (15 шт)"
     "Розовые альстромерии (15 шт)": "https://content2.flowwow-images.com/data/flowers/1000x1000/17/1664917063_12880617.jpg",
+    # Карточка 45 - "Желтые альстромерии (15 шт)"
+    "Желтые альстромерии (15 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/184/245/422/782/111/51/600020361627b0.jpg",
 }
 
 
