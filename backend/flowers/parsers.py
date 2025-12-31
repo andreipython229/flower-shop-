@@ -103,6 +103,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые альстромерии (15 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/184/245/422/782/111/51/600020361627b0.jpg",
     # Карточка 44 - "Оранжевые альстромерии (15 шт)"
     "Оранжевые альстромерии (15 шт)": "https://anguor.com/wp-content/uploads/2023/08/11.webp",
+    # Карточка 43 - "Белые альстромерии (15 шт)"
+    "Белые альстромерии (15 шт)": "https://365ng.ru/upload/iblock/dbc/dbca3af8499231ff7d9120c711756e11.jpg",
 }
 
 
