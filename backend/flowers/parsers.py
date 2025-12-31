@@ -159,6 +159,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые герберы (21 шт)": "https://basket-27.wbbasket.ru/vol4948/part494847/494847641/images/big/1.webp",
     # Карточка 16 - "Белые хризантемы (30 шт)"
     "Белые хризантемы (30 шт)": "https://ir.ozone.ru/s3/multimedia-t/6098999165.jpg",
+    # Карточка 15 - "Желтые хризантемы (30 шт)"
+    "Желтые хризантемы (30 шт)": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/-12/027/247/424/181/90/100067690988b0.jpg",
 }
 
 
