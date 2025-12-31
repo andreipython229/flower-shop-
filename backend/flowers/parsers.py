@@ -143,6 +143,8 @@ FLOWER_IMAGE_MAP = {
     "Красные тюльпаны (15 шт)": "https://avatars.mds.yandex.net/get-mpic/4397502/2a00000195667226dbc269010f5fbf9cd8a5/orig",
     # Карточка 24 - "Желтые тюльпаны (15 шт)"
     "Желтые тюльпаны (15 шт)": "https://main-cdn.sbermegamarket.ru/big2/hlr-system/167/790/404/172/614/43/100066869117b0.jpg",
+    # Карточка 23 - "Розовые тюльпаны (15 шт)"
+    "Розовые тюльпаны (15 шт)": "https://avatars.mds.yandex.net/get-mpic/1522540/img_id6414687787063019052.jpeg/orig",
 }
 
 
