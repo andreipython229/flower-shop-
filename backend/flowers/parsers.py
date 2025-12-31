@@ -111,6 +111,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые фрезии (15 шт)": "https://stihi.ru/pics/2013/02/23/6419.jpg",
     # Карточка 40 - "Розовые фрезии (15 шт)"
     "Розовые фрезии (15 шт)": "https://xn----ctbeg4axpf7a5c9ac.xn--p1ai/images/prev/3b139c4023f3088a1f62913d624afe14_s1000x0.png",
+    # Карточка 39 - "Белые астры (20 шт)"
+    "Белые астры (20 шт)": "https://www.stars-plant.nl/wp-content/uploads/2020/08/Callistephus-Bonita-White-Stars-plant.jpg",
 }
 
 
