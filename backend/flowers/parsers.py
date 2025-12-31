@@ -121,6 +121,8 @@ FLOWER_IMAGE_MAP = {
     "Красные гладиолусы (7 шт)": "https://www.roza4u.ru/image/cache/catalog/gladiolus/7_krasnyh_gladiolusov_6-1400x1400.jpg",
     # Карточка 35 - "Белые гладиолусы (7 шт)"
     "Белые гладиолусы (7 шт)": "https://avatars.mds.yandex.net/get-mpic/15427292/2a00000197355a68c5009efd6ed5fbbcbeaf/orig",
+    # Карточка 34 - "Розовые гладиолусы (7 шт)"
+    "Розовые гладиолусы (7 шт)": "https://avatars.mds.yandex.net/get-mpic/932277/img_id744274101160576383.jpeg/orig",
 }
 
 
