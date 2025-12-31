@@ -85,6 +85,8 @@ FLOWER_IMAGE_MAP = {
     "Букет невесты": "https://i.pinimg.com/originals/1b/c9/f2/1bc9f2c4ec5ff79cd71131c7560d3f4f.jpg",
     # Карточка 53 - 'Смешанный букет "Премиум"'
     'Смешанный букет "Премиум"': "https://lovelybuket.ru/wp-content/webp-express/webp-images/uploads/2025/02/f562ed36-5e24-4b87-a038-5e7169ae1c7c.jpeg.webp",
+    # Карточка 52 - 'Смешанный букет "Классика"'
+    'Смешанный букет "Классика"': "https://img.freepik.com/premium-photo/close-up-pink-rose-bouquet_1048944-23538004.jpg?semt=ais_hybrid&w=740&q=80",
 }
 
 
