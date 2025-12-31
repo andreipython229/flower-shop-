@@ -117,6 +117,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые астры (20 шт)": "https://seedspost.ru/upload/resize_cache/iblock/1a6/537_240_2/fa93c23f_d006_11e1_b4e9_3c4a92d5c739_7a9a21dc_3d06_11ed_af06_00155de0f501.jpeg",
     # Карточка 37 - "Фиолетовые астры (20 шт)"
     "Фиолетовые астры (20 шт)": "https://basket-26.wbbasket.ru/vol4788/part478807/478807550/images/big/1.webp",
+    # Карточка 36 - "Красные гладиолусы (7 шт)"
+    "Красные гладиолусы (7 шт)": "https://www.roza4u.ru/image/cache/catalog/gladiolus/7_krasnyh_gladiolusov_6-1400x1400.jpg",
 }
 
 
