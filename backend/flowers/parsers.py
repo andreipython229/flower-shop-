@@ -49,6 +49,8 @@ FLOWER_IMAGE_MAP = {
     "Розовые лилии (3 шт)": "https://c8.alamy.com/comp/2JFWCK2/closeup-top-view-of-pink-orchids-growing-at-nursery-in-summer-orchidaceae-blooming-in-backyard-garden-in-spring-from-above-pretty-flowering-plants-2JFWCK2.jpg",
     # Карточка 71 - "Розовые лилии (5 шт)"
     "Розовые лилии (5 шт)": "https://i.artfile.ru/1920x1307_858154_[www.ArtFile.ru].jpg",
+    # Карточка 70 - "Оранжевые лилии (3 шт)"
+    "Оранжевые лилии (3 шт)": "https://c8.alamy.com/comp/2GKHWAB/bouquet-of-orange-asiatic-lilies-on-yellow-background-2GKHWAB.jpg",
 }
 
 
