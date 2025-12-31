@@ -23,6 +23,8 @@ FLOWER_IMAGE_MAP = {
     "Желтые хризантемы (15 шт)": "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX2214727.jpg",
     # Карточка 84 - "Желтые хризантемы (25 шт)"
     "Желтые хризантемы (25 шт)": "https://img.goodfon.ru/original/4032x3024/3/a9/tsvety-khrizantemy-zheltye-mnogo.jpg",
+    # Карточка 83 - "Розовые хризантемы (15 шт)"
+    "Розовые хризантемы (15 шт)": "https://i.pinimg.com/originals/cd/fd/87/cdfd87fc7873fac1473b560dc80b69b3.jpg",
 }
 
 
