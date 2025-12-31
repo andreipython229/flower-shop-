@@ -87,6 +87,8 @@ FLOWER_IMAGE_MAP = {
     'Смешанный букет "Премиум"': "https://lovelybuket.ru/wp-content/webp-express/webp-images/uploads/2025/02/f562ed36-5e24-4b87-a038-5e7169ae1c7c.jpeg.webp",
     # Карточка 52 - 'Смешанный букет "Классика"'
     'Смешанный букет "Классика"': "https://img.freepik.com/premium-photo/close-up-pink-rose-bouquet_1048944-23538004.jpg?semt=ais_hybrid&w=740&q=80",
+    # Карточка 51 - 'Смешанный букет "Эксклюзив"'
+    'Смешанный букет "Эксклюзив"': "https://bar-flowers.ru/image/cache/data/svoi/%20%D1%81%20%D0%B3%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D0%B5%D0%B9-750x810.jpg",
 }
 
 
