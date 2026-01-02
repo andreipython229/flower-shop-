@@ -95,12 +95,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "wsgi.application"
 
+# База данных: SQLite для локальной разработки, PostgreSQL для продакшена
+# База данных: SQLite для локальной разработки, PostgreSQL для продакшена
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# Если на Render задана переменная DATABASE_URL, используем PostgreSQL
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if DATABASE_URL:
+    import dj_database_url
+    DATABASES["default"] = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
