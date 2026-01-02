@@ -52,11 +52,23 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# CORS настройки для разрешения запросов с фронтенда
+# Локальные адреса для разработки
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:3001",
     "http://127.0.0.1:3001",
+]
+
+# Добавляем домен Netlify из переменной окружения (если задан)
+FRONTEND_ORIGIN = os.environ.get("FRONTEND_ORIGIN", "")
+if FRONTEND_ORIGIN:
+    CORS_ALLOWED_ORIGINS.append(FRONTEND_ORIGIN)
+
+# Также разрешаем все поддомены Netlify (для безопасности можно ограничить)
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.netlify\.app$",
 ]
 
 ROOT_URLCONF = "urls"
