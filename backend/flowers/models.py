@@ -20,9 +20,7 @@ class Flower(models.Model):
     image = models.ImageField(
         upload_to="flowers/", blank=True, null=True, verbose_name="Изображение (файл)"
     )
-    image_url = models.URLField(
-        max_length=500, blank=True, null=True, verbose_name="Изображение (URL)"
-    )
+    image_url = models.URLField(blank=True, null=True, verbose_name="Изображение (URL)")
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,

@@ -17,7 +17,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     """Сериализатор для пользователя"""
 
-    profile = UserProfileSerializer(read_only=True, required=False)
+    profile = UserProfileSerializer(read_only=True)
     password = serializers.CharField(
         write_only=True, required=True, validators=[validate_password]
     )
@@ -44,19 +44,6 @@ class UserSerializer(serializers.ModelSerializer):
         if attrs["password"] != attrs["password2"]:
             raise serializers.ValidationError({"password": "Пароли не совпадают"})
         return attrs
-
-    def to_representation(self, instance):
-        """Безопасная сериализация с обработкой отсутствующего профиля"""
-        data = super().to_representation(instance)
-        # Убираем password и password2 из вывода
-        data.pop("password", None)
-        data.pop("password2", None)
-        # Если профиля нет, возвращаем None
-        try:
-            instance.profile
-        except Exception:
-            data["profile"] = None
-        return data
 
     def create(self, validated_data):
         validated_data.pop("password2")
