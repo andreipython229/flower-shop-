@@ -1,5 +1,3 @@
-import logging
-
 from django.contrib.auth import authenticate
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
@@ -8,8 +6,6 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .serializers import RegisterSerializer, UserSerializer
-
-logger = logging.getLogger(__name__)
 
 
 @api_view(["POST"])
@@ -38,12 +34,19 @@ def register(request):
 @permission_classes([AllowAny])
 def login(request):
     """Авторизация пользователя"""
+    # Логируем входящие данные для отладки
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.info(f"Login request data: {request.data}")
+    logger.info(f"Request content type: {request.content_type}")
+    
     username = request.data.get("username")
     password = request.data.get("password")
 
     if not username or not password:
+        logger.warning(f"Missing credentials: username={username is not None}, password={password is not None}")
         return Response(
-            {"error": "Необходимо указать username и password"},
+            {"error": "Необходимо указать username и password", "received_data": list(request.data.keys())},
             status=status.HTTP_400_BAD_REQUEST,
         )
 
@@ -54,46 +57,18 @@ def login(request):
             status=status.HTTP_401_UNAUTHORIZED,
         )
 
-    # Создаём профиль, если его нет
-    from .models import UserProfile
-
-    try:
-        # Проверяем, есть ли профиль
-        user.profile
-    except UserProfile.DoesNotExist:
-        # Создаём профиль, если его нет
-        try:
-            UserProfile.objects.create(user=user)
-        except Exception as e:
-            logger.error(f"Ошибка при создании профиля: {e}", exc_info=True)
-            # Продолжаем без профиля
-    except Exception as e:
-        logger.error(f"Ошибка при проверке профиля: {e}", exc_info=True)
-        # Продолжаем без профиля
-
     # Генерируем JWT токены
-    try:
-        refresh = RefreshToken.for_user(user)
-        user_data = UserSerializer(user).data
-        return Response(
-            {
-                "user": user_data,
-                "tokens": {
-                    "refresh": str(refresh),
-                    "access": str(refresh.access_token),
-                },
+    refresh = RefreshToken.for_user(user)
+    return Response(
+        {
+            "user": UserSerializer(user).data,
+            "tokens": {
+                "refresh": str(refresh),
+                "access": str(refresh.access_token),
             },
-            status=status.HTTP_200_OK,
-        )
-    except Exception as e:
-        logger.error(
-            f"Ошибка при генерации токенов или сериализации: {e}",
-            exc_info=True,
-        )
-        return Response(
-            {"error": "Внутренняя ошибка сервера"},
-            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-        )
+        },
+        status=status.HTTP_200_OK,
+    )
 
 
 @api_view(["GET"])
