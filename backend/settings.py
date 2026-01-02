@@ -24,7 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent
 
 SECRET_KEY = "django-insecure-9fqq&4rl22m_m+rkk@43dw)_d_vn=5#$+y$hg6@zv&rtwxeg%s"
 DEBUG = True
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+# ALLOWED_HOSTS для локальной разработки и продакшена
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "flower-api-v42m.onrender.com"]
+# Если задан ALLOWED_HOST через переменную окружения, добавляем его
+ALLOWED_HOST_ENV = os.environ.get("ALLOWED_HOST")
+if ALLOWED_HOST_ENV:
+    ALLOWED_HOSTS.append(ALLOWED_HOST_ENV)
 
 INSTALLED_APPS = [
     "django.contrib.admin",
