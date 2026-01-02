@@ -9,6 +9,7 @@ import {
   User,
 } from '../types';
 
+// API URL: локально использует localhost, на продакшн - из переменной окружения
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 const api = axios.create({
@@ -35,7 +36,7 @@ api.interceptors.response.use(
       const refreshToken = localStorage.getItem('refreshToken');
       if (refreshToken) {
         try {
-          const response = await axios.post(`${process.env.REACT_APP_API_URL || 'http://localhost:8000/api'}/auth/token/refresh/`, {
+          const response = await axios.post(`${API_BASE_URL}/auth/token/refresh/`, {
             refresh: refreshToken,
           });
           const { access } = response.data;
