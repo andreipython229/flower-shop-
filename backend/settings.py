@@ -8,7 +8,9 @@ from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
-import dj_database_url
+
+# Загружаем переменные окружения из .env файла
+load_dotenv()
 
 # Подавление предупреждения о development server
 os.environ.setdefault("DJANGO_SUPPRESS_DEV_SERVER_WARNING", "1")
@@ -20,14 +22,9 @@ warnings.filterwarnings("ignore", message=".*pkg_resources.*")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent
 
-# Загружаем переменные окружения из .env файла
-load_dotenv(dotenv_path=BASE_DIR / ".env")
-
-SECRET_KEY = os.environ.get("SECRET_KEY")
-if not SECRET_KEY:
-    raise ValueError("SECRET_KEY environment variable is not set!")
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost,flower-api.onrender.com").split(",")
+SECRET_KEY = "django-insecure-9fqq&4rl22m_m+rkk@43dw)_d_vn=5#$+y$hg6@zv&rtwxeg%s"
+DEBUG = True
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -46,7 +43,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # Для раздачи статических файлов на Render
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -56,31 +52,11 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# CORS настройки для production и development
-CORS_ALLOWED_ORIGINS = os.environ.get(
-    "CORS_ALLOWED_ORIGINS",
-    "http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001,http://127.0.0.1:3001"
-).split(",")
-
-# Для Vercel и Netlify - разрешаем все поддомены vercel.app и netlify.app
-CORS_ALLOW_CREDENTIALS = True
-# Добавляем regex для Netlify и Vercel (работает и в DEBUG, и в production)
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://.*\.vercel\.app$",
-    r"^https://.*\.netlify\.app$",
-]
-# Дополнительные настройки CORS
-CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
 ]
 
 ROOT_URLCONF = "urls"
@@ -102,22 +78,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "wsgi.application"
 
-# Настройки базы данных
-# Используем PostgreSQL из переменной окружения, если доступна, иначе SQLite для локальной разработки
-sqlite_path = BASE_DIR / "db.sqlite3"
-db_config = dj_database_url.config(
-    default=f"sqlite:///{sqlite_path}",
-    conn_max_age=600,
-)
-
-# Если используется PostgreSQL, убеждаемся что используется правильный драйвер
-if db_config.get("ENGINE") == "django.db.backends.postgresql":
-    # Для psycopg3 используем правильный backend
-    db_config["OPTIONS"] = db_config.get("OPTIONS", {})
-    # Django 5.2+ автоматически использует psycopg3 если доступен
-
 DATABASES = {
-    "default": db_config
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -141,7 +106,6 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
@@ -173,6 +137,11 @@ STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY", "")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
 STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
 
+# Frontend URL для редиректов после оплаты
+# Локально: http://localhost:3000
+# На продакшн: https://your-frontend-url.onrender.com
+FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:3000")
+
 # Email Settings
 # Для разработки используем консольный бэкенд (письма выводятся в консоль)
 # Для продакшена установи в .env: EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
@@ -191,38 +160,3 @@ DEFAULT_FROM_EMAIL = os.environ.get(
 # Telegram Bot Settings (опционально)
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
-
-# WhiteNoise settings для статических файлов
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# Настройки логирования для вывода ошибок в консоль (Render logs)
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-        },
-    },
-    "root": {
-        "handlers": ["console"],
-        "level": "INFO",
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["console"],
-            "level": "INFO",
-            "propagate": False,
-        },
-        "django.request": {
-            "handlers": ["console"],
-            "level": "ERROR",
-            "propagate": False,
-        },
-        "accounts": {
-            "handlers": ["console"],
-            "level": "DEBUG" if DEBUG else "INFO",
-            "propagate": False,
-        },
-    },
-}

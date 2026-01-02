@@ -57,8 +57,8 @@ def create_checkout_session(request):
             )
 
         # Создаём Checkout Session в Stripe
-        # Используем фронтенд URL для редиректа
-        frontend_url = "http://localhost:3000"
+        # Используем фронтенд URL для редиректа из настроек
+        frontend_url = settings.FRONTEND_URL
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=["card"],
             line_items=line_items,
