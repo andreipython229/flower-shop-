@@ -13,6 +13,14 @@ from .utils import send_order_confirmation_email, send_telegram_notification
 # Настройка Stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+# Проверка наличия ключа (для отладки)
+import logging
+logger = logging.getLogger(__name__)
+if not settings.STRIPE_SECRET_KEY:
+    logger.error("STRIPE_SECRET_KEY не установлен!")
+else:
+    logger.info(f"STRIPE_SECRET_KEY установлен (первые 10 символов: {settings.STRIPE_SECRET_KEY[:10]}...)")
+
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
