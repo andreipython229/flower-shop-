@@ -80,6 +80,9 @@ export interface PaymentStatusResponse {
 export const ordersAPI = {
   create: (orderData: OrderData): Promise<AxiosResponse<Order>> => api.post('/orders/', orderData),
   getAll: (): Promise<AxiosResponse<Order[]>> => api.get('/orders/'),
+  delete: (id: number): Promise<AxiosResponse<void>> => api.delete(`/orders/${id}/`),
+  deletePending: (): Promise<AxiosResponse<{ message: string }>> => 
+    api.delete('/orders/delete_pending/'),
   createCheckout: (orderData: OrderData): Promise<AxiosResponse<CheckoutResponse>> =>
     api.post('/checkout/', orderData),
   checkPaymentStatus: (sessionId: string): Promise<AxiosResponse<PaymentStatusResponse>> =>

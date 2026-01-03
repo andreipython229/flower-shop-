@@ -1,5 +1,7 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from .models import Order
 from .serializers import OrderSerializer
@@ -44,3 +46,24 @@ class OrderViewSet(viewsets.ModelViewSet):
         # Отправляем уведомления
         send_order_confirmation_email(order)
         send_telegram_notification(order)
+
+    @action(detail=False, methods=['delete'])
+    def delete_pending(self, request):
+        """
+        Удаляет все заказы со статусом 'pending' для текущего пользователя
+        """
+        if not request.user or not request.user.is_authenticated:
+            return Response(
+                {"error": "Требуется авторизация"},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+        
+        deleted_count, _ = Order.objects.filter(
+            user=request.user,
+            status='pending'
+        ).delete()
+        
+        return Response(
+            {"message": f"Удалено заказов: {deleted_count}"},
+            status=status.HTTP_200_OK
+        )

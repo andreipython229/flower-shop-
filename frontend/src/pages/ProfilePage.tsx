@@ -275,6 +275,29 @@ const ProfilePage: React.FC = () => {
     }
   };
 
+  const handleDeletePending = async () => {
+    const pendingCount = orders.filter((o) => o.status === 'pending').length;
+    if (pendingCount === 0) {
+      alert('Нет заказов со статусом "Ожидает обработки" для удаления');
+      return;
+    }
+
+    if (!window.confirm(`Удалить все заказы со статусом "Ожидает обработки"? (${pendingCount} шт.)`)) {
+      return;
+    }
+
+    try {
+      await ordersAPI.deletePending();
+      // Обновляем список заказов
+      await loadData();
+      alert(`Удалено заказов: ${pendingCount}`);
+    } catch (error: any) {
+      console.error('Error deleting pending orders:', error);
+      const errorMessage = error.response?.data?.error || error.response?.data?.message || error.message || 'Ошибка при удалении заказов';
+      alert(`Ошибка: ${errorMessage}`);
+    }
+  };
+
   const getStatusText = (status?: string) => {
     if (!status) return 'Неизвестно';
     const statusMap: { [key: string]: string } = {
@@ -325,7 +348,17 @@ const ProfilePage: React.FC = () => {
 
       {activeTab === 'orders' && (
         <Section>
-          <Title>История заказов</Title>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+            <Title style={{ margin: 0 }}>История заказов</Title>
+            {orders.filter((o) => o.status === 'pending').length > 0 && (
+              <Button 
+                onClick={handleDeletePending}
+                style={{ backgroundColor: '#f44336', color: 'white' }}
+              >
+                🗑️ Удалить все ожидающие заказы ({orders.filter((o) => o.status === 'pending').length})
+              </Button>
+            )}
+          </div>
           {orders.length === 0 ? (
             <EmptyMessage>У вас пока нет заказов</EmptyMessage>
           ) : (
