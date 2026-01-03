@@ -231,11 +231,17 @@ const ProfilePage: React.FC = () => {
 
   const handlePayOrder = async (order: Order) => {
     try {
+      // Проверяем, что у нас есть все необходимые данные
+      if (!user) {
+        alert('Ошибка: данные пользователя не загружены');
+        return;
+      }
+
       // Создаём checkout сессию для существующего заказа
       const response = await ordersAPI.createCheckout({
-        name: user?.first_name || '',
-        phone: user?.profile?.phone || '',
-        email: user?.email || '',
+        name: order.name || user.first_name || user.username || '',
+        phone: order.phone || user.profile?.phone || '',
+        email: order.email || user.email || '',
         address: order.address || '',
         comment: order.comment || '',
         items: order.items,
@@ -244,9 +250,10 @@ const ProfilePage: React.FC = () => {
       
       // Редирект на страницу оплаты Stripe
       window.location.href = response.data.checkout_url;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error creating checkout:', error);
-      alert('Ошибка при создании платежа. Попробуйте позже.');
+      const errorMessage = error.response?.data?.error || error.response?.data?.message || error.message || 'Ошибка при создании платежа. Попробуйте позже.';
+      alert(`Ошибка: ${errorMessage}`);
     }
   };
 
