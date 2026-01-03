@@ -237,16 +237,25 @@ const ProfilePage: React.FC = () => {
         return;
       }
 
+      // Используем данные из заказа, если они есть, иначе - данные пользователя
+      const checkoutData = {
+        name: (order as any).name || user.first_name || user.username || 'Клиент',
+        phone: (order as any).phone || user.profile?.phone || '+79991234567',
+        email: (order as any).email || user.email || '',
+        address: (order as any).address || 'Адрес не указан',
+        comment: (order as any).comment || '',
+        items: order.items || [],
+        total: order.total || 0,
+      };
+
+      // Проверяем, что есть все обязательные поля
+      if (!checkoutData.email || !checkoutData.name || !checkoutData.address) {
+        alert('В заказе отсутствуют необходимые данные. Пожалуйста, оформите новый заказ.');
+        return;
+      }
+
       // Создаём checkout сессию для существующего заказа
-      const response = await ordersAPI.createCheckout({
-        name: order.name || user.first_name || user.username || '',
-        phone: order.phone || user.profile?.phone || '',
-        email: order.email || user.email || '',
-        address: order.address || '',
-        comment: order.comment || '',
-        items: order.items,
-        total: order.total,
-      });
+      const response = await ordersAPI.createCheckout(checkoutData);
       
       // Редирект на страницу оплаты Stripe
       window.location.href = response.data.checkout_url;
