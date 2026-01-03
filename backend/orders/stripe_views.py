@@ -31,19 +31,35 @@ def create_checkout_session(request):
     try:
         # Получаем данные заказа из запроса
         order_data = request.data
+        logger.info(f"Create checkout request data: {order_data}")
+        logger.info(f"Request user: {request.user.username}")
 
+        # Проверяем обязательные поля
+        name = order_data.get("name") or ""
+        phone = order_data.get("phone") or ""
+        email = order_data.get("email") or ""
+        address = order_data.get("address") or ""
+        
+        if not name or not phone or not email or not address:
+            logger.error(f"Missing required fields: name={bool(name)}, phone={bool(phone)}, email={bool(email)}, address={bool(address)}")
+            return Response(
+                {"error": "Необходимо указать имя, телефон, email и адрес"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        
         # Создаём заказ в базе данных
         order = Order.objects.create(
             user=request.user,
-            name=order_data.get("name"),
-            phone=order_data.get("phone"),
-            email=order_data.get("email"),
-            address=order_data.get("address"),
+            name=name,
+            phone=phone,
+            email=email,
+            address=address,
             comment=order_data.get("comment", ""),
             items=order_data.get("items", []),
             total=order_data.get("total"),
             status="pending",
         )
+        logger.info(f"Order created: {order.id}")
 
         # Создаём line items для Stripe
         line_items = []
