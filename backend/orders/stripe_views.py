@@ -11,15 +11,18 @@ from .models import Order
 from .utils import send_order_confirmation_email, send_telegram_notification
 
 # Настройка Stripe
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
-# Проверка наличия ключа (для отладки)
 import logging
 logger = logging.getLogger(__name__)
+
+# Проверка наличия ключа при загрузке модуля (для отладки)
 if not settings.STRIPE_SECRET_KEY:
+    print("❌ STRIPE_SECRET_KEY не установлен в settings!")
     logger.error("STRIPE_SECRET_KEY не установлен!")
 else:
+    print(f"✅ STRIPE_SECRET_KEY установлен (первые 10 символов: {settings.STRIPE_SECRET_KEY[:10]}...)")
     logger.info(f"STRIPE_SECRET_KEY установлен (первые 10 символов: {settings.STRIPE_SECRET_KEY[:10]}...)")
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 @api_view(["POST"])
@@ -30,11 +33,14 @@ def create_checkout_session(request):
     """
     # Проверяем наличие Stripe API ключа ПЕРЕД обработкой запроса
     if not settings.STRIPE_SECRET_KEY:
+        print("❌ STRIPE_SECRET_KEY не установлен на сервере при запросе!")
         logger.error("STRIPE_SECRET_KEY не установлен на сервере!")
         return Response(
             {"error": "Ошибка конфигурации: Stripe API ключ не установлен. Обратитесь к администратору."},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
+    
+    print(f"✅ STRIPE_SECRET_KEY присутствует при запросе (первые 10: {settings.STRIPE_SECRET_KEY[:10]}...)")
     
     try:
         # Получаем данные заказа из запроса
