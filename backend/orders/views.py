@@ -47,7 +47,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         send_order_confirmation_email(order)
         send_telegram_notification(order)
 
-    @action(detail=False, methods=['delete'])
+    @action(detail=False, methods=['delete'], url_path='delete_pending', url_name='delete_pending')
     def delete_pending(self, request):
         """
         Удаляет все заказы со статусом 'pending' для текущего пользователя
