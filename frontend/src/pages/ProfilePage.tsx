@@ -101,6 +101,31 @@ const Button = styled.button`
   margin-top: 1rem;
 `;
 
+const PayButton = styled.button`
+  background: #635bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  &:hover {
+    background: #5851ea;
+  }
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+`;
+
 const FlowerGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -204,6 +229,27 @@ const ProfilePage: React.FC = () => {
     navigate('/cart');
   };
 
+  const handlePayOrder = async (order: Order) => {
+    try {
+      // Создаём checkout сессию для существующего заказа
+      const response = await ordersAPI.createCheckout({
+        name: user?.first_name || '',
+        phone: user?.profile?.phone || '',
+        email: user?.email || '',
+        address: order.address || '',
+        comment: order.comment || '',
+        items: order.items,
+        total: order.total,
+      });
+      
+      // Редирект на страницу оплаты Stripe
+      window.location.href = response.data.checkout_url;
+    } catch (error) {
+      console.error('Error creating checkout:', error);
+      alert('Ошибка при создании платежа. Попробуйте позже.');
+    }
+  };
+
   const handleRemoveFavorite = async (favoriteId: number) => {
     try {
       await favoritesAPI.remove(favoriteId);
@@ -289,7 +335,14 @@ const ProfilePage: React.FC = () => {
                     ))}
                   </ul>
                 </div>
-                <Button onClick={() => handleReorder(order)}>Повторить заказ</Button>
+                <ButtonGroup>
+                  {order.status === 'pending' && (
+                    <PayButton onClick={() => handlePayOrder(order)}>
+                      💳 Оплатить заказ
+                    </PayButton>
+                  )}
+                  <Button onClick={() => handleReorder(order)}>Повторить заказ</Button>
+                </ButtonGroup>
               </OrderCard>
             ))
           )}
