@@ -28,6 +28,14 @@ def create_checkout_session(request):
     """
     Создаёт Stripe Checkout Session и возвращает URL для оплаты
     """
+    # Проверяем наличие Stripe API ключа ПЕРЕД обработкой запроса
+    if not settings.STRIPE_SECRET_KEY:
+        logger.error("STRIPE_SECRET_KEY не установлен на сервере!")
+        return Response(
+            {"error": "Ошибка конфигурации: Stripe API ключ не установлен. Обратитесь к администратору."},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+    
     try:
         # Получаем данные заказа из запроса
         order_data = request.data
@@ -39,11 +47,20 @@ def create_checkout_session(request):
         phone = order_data.get("phone") or ""
         email = order_data.get("email") or ""
         address = order_data.get("address") or ""
+        items = order_data.get("items", [])
+        total = order_data.get("total", 0)
         
         if not name or not phone or not email or not address:
             logger.error(f"Missing required fields: name={bool(name)}, phone={bool(phone)}, email={bool(email)}, address={bool(address)}")
             return Response(
                 {"error": "Необходимо указать имя, телефон, email и адрес"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        
+        if not items or not total:
+            logger.error(f"Missing items or total: items={bool(items)}, total={total}")
+            return Response(
+                {"error": "Необходимо указать товары и сумму заказа"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         
@@ -55,15 +72,15 @@ def create_checkout_session(request):
             email=email,
             address=address,
             comment=order_data.get("comment", ""),
-            items=order_data.get("items", []),
-            total=order_data.get("total"),
+            items=items,
+            total=total,
             status="pending",
         )
         logger.info(f"Order created: {order.id}")
 
         # Создаём line items для Stripe
         line_items = []
-        for item in order.items:
+        for item in items:
             line_items.append(
                 {
                     "price_data": {
@@ -83,6 +100,7 @@ def create_checkout_session(request):
         # Создаём Checkout Session в Stripe
         # Используем фронтенд URL для редиректа из настроек
         frontend_url = settings.FRONTEND_URL
+        logger.info(f"Creating Stripe checkout session with frontend_url: {frontend_url}")
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=["card"],
             line_items=line_items,
@@ -116,9 +134,15 @@ def create_checkout_session(request):
         )
 
     except stripe.error.StripeError as e:
-        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        logger.error(f"Stripe Error during checkout session creation: {e}")
+        error_message = str(e)
+        # Если ошибка про отсутствие API ключа, возвращаем понятное сообщение
+        if "API key" in error_message or "did not provide" in error_message:
+            error_message = "Ошибка конфигурации: Stripe API ключ не установлен на сервере. Обратитесь к администратору."
+        return Response({"error": error_message}, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
-        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        logger.error(f"Internal Server Error during checkout session creation: {e}", exc_info=True)
+        return Response({"error": f"Внутренняя ошибка сервера: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(["POST"])
